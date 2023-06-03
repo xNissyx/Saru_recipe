@@ -1,4 +1,4 @@
-### 猿レシピ
+# 猿レシピ
 
 ## サイト概要
 ### サイトテーマ
@@ -19,8 +19,11 @@
 
 ## 設計書
 - ER図
+- https://app.diagrams.net/#G1RSD5_E6tICAXetcvFRjNVsByF6AqorPu
 - テーブル定義書
+- https://docs.google.com/spreadsheets/d/114AV1eqIyK96EXRk1iqSRnckFIF5eywngk5eRWIORu4/edit#gid=324395696
 - 詳細設計
+- https://docs.google.com/spreadsheets/d/1hlC4EDSP2uTdWc6V6rIRkYhU3YDr2xYN2EyT4AUFZeo/edit#gid=549108681
 
 ## 開発環境
 - OS：Linux(CentOS)
