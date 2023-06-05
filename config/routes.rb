@@ -3,8 +3,8 @@ Rails.application.routes.draw do
     root 'homes#top'
 
     devise_for :users, controllers: {
-      registrations: 'registrations',
-      sessions: 'sessions'
+      registrations: 'public/registrations',
+      sessions: 'public/sessions'
     }
     post '/users/guest_login', to: 'sessions#guest_login'
 
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :admins, controllers: {
-      sessions: 'sessions'
+      sessions: 'admin/sessions'
     }
 
   namespace :admin do
