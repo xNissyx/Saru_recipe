@@ -1,20 +1,22 @@
 Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
-
-    devise_for :users, controllers: {
-      registrations: 'public/registrations',
-      sessions: 'public/sessions'
-    }
-    post '/users/guest_login', to: 'sessions#guest_login'
-
-    resource :users, only: [:show, :edit, :update] do
+    
+    resource :users, only: [:show, :update] do
       member do
         get 'confirm'
         patch 'withdraw'
         get 'bookmarks'
       end
+      # deviseのルーティングと被るため、informationを追加
+      get 'information/edit', to: 'users#edit'
     end
+    
+    devise_for :users, controllers: {
+      registrations: 'public/registrations',
+      sessions: 'public/sessions'
+    }
+    post '/users/guest_login', to: 'users#guest_login'
 
     resources :recipes do
       resources :comments, only: [:create, :destroy]
