@@ -1,0 +1,17 @@
+<p>
+  <strong>レシピ名</strong>
+  <%= @recipe.title %>
+</p>
+
+<p>
+  <strong>レシピの説明</strong>
+  <%= @recipe.description %>
+</p>
+
+<p>
+  <strong>カロリー</strong>
+  <%= @recipe.calorie %>kcal
+</p>
+
+<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<%= link_to 'Back', recipes_path %>

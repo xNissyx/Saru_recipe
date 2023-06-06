@@ -1,0 +1,21 @@
+<%= form_with(model: recipe, local: true) do |form| %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, placeholder: "レシピ名" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, placeholder: "レシピの説明" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :calorie %>
+    <%= form.number_field :calorie %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
