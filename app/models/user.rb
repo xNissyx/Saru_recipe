@@ -4,7 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  has_many :recipes
+  has_many :recipes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmarking_recipes, through: :bookmarks, source: :recipe
+  
+  # そのレシピをユーザーがブックマークしているかどうか判断するメソッド
+  def bookmarking?(recipe)
+    bookmarking_recipes.include?(recipe)
+  end
   # ゲストログイン用のメソッド
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
