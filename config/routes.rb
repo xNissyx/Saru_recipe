@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'homes/top'
+  end
   scope module: :public do
     root 'homes#top'
     
@@ -29,6 +32,8 @@ Rails.application.routes.draw do
 
     resources :chatbots, only: [:create]
   end
+  
+  get '/admin', to: 'admin/homes#top'  
 
   devise_for :admins, controllers: {
       sessions: 'admin/sessions'
