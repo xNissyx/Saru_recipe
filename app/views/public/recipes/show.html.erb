@@ -21,3 +21,16 @@
 <% else %>
   <%= link_to 'ブックマークする', recipe_bookmark_path(@recipe), method: :post %>
 <% end %>
+
+<% @recipe.comments.each do |comment| %>
+  <p>
+    <%= comment.user.name %>:
+    <%= comment.content %>
+    <%= comment.score %>
+    <% if comment.user_id == current_user.id %>
+      <%= link_to '削除', recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: 'コメントを削除しますか？' } %>
+    <% end %>
+  </p>
+<% end %>
+
+<%= render "public/comments/form" %>
