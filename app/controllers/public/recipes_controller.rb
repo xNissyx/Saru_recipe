@@ -36,6 +36,10 @@ class Public::RecipesController < ApplicationController
     @recipe.destroy
     redirect_to recipes_url, notice: 'レシピを削除しました'
   end
+  
+  def search
+    @recipes = Recipe.where('title LIKE ?', "%#{params[:word]}%")
+  end
 
   private
 
