@@ -25,5 +25,11 @@
       </ul>
     </div>
   </nav>
-
+  
+  <section class="search-bar text-right">
+    <%= form_with(url: search_recipes_path, method: :get, local: true) do |form| %>
+      <%= form.text_field :query, placeholder: "Search for recipes...", class: "search-input" %>
+      <%= form.submit "Search", class: "search-button" %>
+    <% end %>
+  </section>
 </header>
