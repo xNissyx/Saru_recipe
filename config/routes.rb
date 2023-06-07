@@ -26,9 +26,11 @@ Rails.application.routes.draw do
       resource :bookmark, only: [:create, :destroy]
       collection do
         get 'search'
-        get 'tag_search'
       end
     end
+    
+    # タグ検索用ルーティング
+    get 'tags/:tag_id/recipes', to: 'recipes#tag_search', as: 'tag_recipes'
 
     resources :chatbots, only: [:create]
   end

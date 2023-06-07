@@ -41,7 +41,9 @@ class Public::RecipesController < ApplicationController
     @recipes = Recipe.where('title LIKE ?', "%#{params[:word]}%")
   end
   
-  def tag_seatch
+  def tag_search
+    @tag = Tag.find(params[:tag_id])
+    @recipes = @tag.recipes
   end
 
   private
@@ -51,6 +53,6 @@ class Public::RecipesController < ApplicationController
     end
 
     def recipe_params
-      params.require(:recipe).permit(:title, :description, :calorie, :user_id, :image)
+      params.require(:recipe).permit(:title, :description, :calorie, :user_id, :image, tag_ids: [])
     end
 end

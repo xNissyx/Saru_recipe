@@ -19,7 +19,12 @@
     <%= f.label :calorie, class: 'form-label' %>
     <%= f.number_field :calorie, class: 'form-control' %>
   </div>
-  
+
+  <div class="mb-3">
+    <%= f.label :tag_ids, "該当するタグがあったら選択してください", class: 'form-label' %><br>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Submit", class: "btn btn-primary" %>
   </div>
