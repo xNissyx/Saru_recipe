@@ -1,0 +1,24 @@
+
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mt-5">
+        <div class="card-header">
+          <h2 class="text-center">新しいタグの作成</h2>
+        </div>
+        <div class="card-body">
+          <%= form_with model: [:admin, @tag], class: 'new-tag' do |form| %>
+            <div class="form-group">
+              <%= form.label :name, class: 'form-label' %>
+              <%= form.text_field :name, class: 'form-control' %>
+            </div>
+            <div class="form-group text-center">
+              <%= form.submit "タグを作成する", class: 'btn btn-primary' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <%= link_to 'タグ一覧に戻る', admin_tags_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  </div>
