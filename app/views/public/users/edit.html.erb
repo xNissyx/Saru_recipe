@@ -2,6 +2,10 @@
   <table class="table">
     <tbody>
       <tr>
+        <th scope="row">プロフィール画像</th>
+        <td><%= f.file_field :image, accept: "image/*" %></td>
+      </tr>
+      <tr>
         <th scope="row">名前</th>
         <td><%= f.text_field :name, class: 'form-control' %></td>
       </tr>

@@ -1,21 +1,26 @@
-<%= form_with(model: recipe, local: true) do |form| %>
+<%= form_with(model: recipe, local: true) do |f| %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, placeholder: "レシピ名" %>
+  <div class="mb-3">
+    <%= f.label :image, class: 'form-label' %>
+    <%= f.file_field :image, accept: "image/*" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, placeholder: "レシピの説明" %>
+  <div class="mb-3">
+    <%= f.label :title, class: 'form-label' %>
+    <%= f.text_field :title, class: 'form-control', placeholder: "レシピ名" %>
   </div>
 
-  <div class="field">
-    <%= form.label :calorie %>
-    <%= form.number_field :calorie %>
+  <div class="mb-3">
+    <%= f.label :description, class: 'form-label' %>
+    <%= f.text_area :description, class: 'form-control', placeholder: "レシピの説明" %>
   </div>
 
+  <div class="mb-3">
+    <%= f.label :calorie, class: 'form-label' %>
+    <%= f.number_field :calorie, class: 'form-control' %>
+  </div>
+  
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
