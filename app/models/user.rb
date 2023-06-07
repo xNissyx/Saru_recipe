@@ -11,11 +11,11 @@ class User < ApplicationRecord
   
   has_one_attached :image
   # ActiveStorage用
-   def get_image
+  def get_image
     if image.attached?
       image
     else
-      # ここで、デフォルトの画像をActiveStorageのアタッチメントとして返します
+    # Blobオブジェクトにしかvariantメソッドは使えないため、ここで変換している
       ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app', 'assets', 'images', 'no_image.jpg')), filename: 'no_image.jpg')
     end
   end
