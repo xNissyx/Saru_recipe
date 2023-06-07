@@ -1,18 +1,31 @@
 <%= image_tag @recipe.get_image.variant( resize: "100x100^", gravity: "center", crop: "100x100+0+0" ).processed %>
-<p>
-  <strong>レシピ名</strong>
-  <%= @recipe.title %>
-</p>
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row"><strong>レシピ名</strong></th>
+      <td><%= @recipe.title %></td>
+    </tr>
+    <tr>
+      <th scope="row"><strong>レシピの説明</strong></th>
+      <td><%= @recipe.description %></td>
+    </tr>
+    <tr>
+      <th scope="row"><strong>カロリー</strong></th>
+      <td><%= @recipe.calorie %>kcal</td>
+    </tr>
+    <tr>
+      <th scope="row"><strong>タグ</strong></th>
+      <td>
+        <% @recipe.tags.each do |tag| %>
+          <%= link_to tag_recipes_path(tag_id: tag.id), class: "btn btn-sm bg-secondary" do %>
+            <%= tag.name %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-<p>
-  <strong>レシピの説明</strong>
-  <%= @recipe.description %>
-</p>
-
-<p>
-  <strong>カロリー</strong>
-  <%= @recipe.calorie %>kcal
-</p>
 
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %><br>
