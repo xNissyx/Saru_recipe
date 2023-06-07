@@ -1,5 +1,6 @@
 <table>
   <tr>
+    <th></th>
     <th>レシピ名</th>
     <th>レシピの説明</th>
     <th>カロリー</th>
@@ -8,6 +9,7 @@
 
 <% recipes.each do |recipe| %>
   <tr>
+    <td><%= image_tag recipe.get_image.variant( resize: "100x100^", gravity: "center", crop: "100x100+0+0" ).processed %></td>
     <td><%= recipe.title %></td>
     <td><%= recipe.description %></td>
     <td><%= recipe.calorie %></td>

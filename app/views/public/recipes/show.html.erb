@@ -1,3 +1,4 @@
+<%= image_tag @recipe.get_image.variant( resize: "100x100^", gravity: "center", crop: "100x100+0+0" ).processed %>
 <p>
   <strong>レシピ名</strong>
   <%= @recipe.title %>
