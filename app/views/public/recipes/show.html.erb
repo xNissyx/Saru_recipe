@@ -23,6 +23,14 @@
         <% end %>
       </td>
     </tr>
+    <tr>
+      <th scope="row"><strong>材料</strong></th>
+      <td>
+        <% @recipe.ingredients.each do |ingredient| %>
+            <%= ingredient.name %>
+        <% end %>
+      </td>
+    </tr>
   </tbody>
 </table>
 

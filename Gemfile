@@ -61,3 +61,5 @@ gem 'image_processing', '~> 1.2'
 # AIgem
 gem 'ruby-openai'
 gem 'dotenv-rails'
+
+gem "cocoon"
