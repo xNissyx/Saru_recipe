@@ -1,34 +1,35 @@
-<h2>新規登録</h2>
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <div class="card mt-5">
+      <div class="card-header">
+        新規登録
+      </div>
+      <div class="card-body">
+        <%= form_with(model: @user, local: true) do |f| %>
+          <div class="form-group">
+            <%= f.label :name, "ユーザーネーム" %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+          </div>
 
-<%= form_with model: resource, as: resource_name, url: registration_path(resource_name), local: true do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+          <div class="form-group">
+            <%= f.label :password, "パスワード" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+          </div>
 
-  <div class="form-group">
-    <%= f.label :name %>
-    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control' %>
+          <div class="form-group">
+            <%= f.label :password_confirmation, "パスワード(確認用)" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+          </div>
+
+          <%= f.submit "登録", class: 'btn btn-secondary rounded-pill' %><br>
+
+        <% end %>
+          <%= link_to "すでに登録済み方はこちら", new_user_session_path, class: 'd-block my-2' %>
+      </div>
+    </div>
   </div>
-
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.email_field :email, autocomplete: "email", class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <small class="form-text text-muted">(<%= @minimum_password_length %> characters minimum)</small>
-    <% end %>
-    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.submit "Sign up", class: 'btn btn-primary' %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>
