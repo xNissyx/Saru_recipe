@@ -4,6 +4,8 @@ class Recipe < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :recipe_tags
   has_many :tags, through: :recipe_tags
+  has_many :ingredients
+  accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
   
   # ActiveStorage用
   has_one_attached :image
