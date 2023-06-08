@@ -1,27 +1,27 @@
-<h2 class="mb-3">Log in</h2>
+<div class="row justify-content-center">
+  <div class="col-md-5">
+    <div class="card mt-5">
+      <div class="card-header">
+        ログイン
+      </div>
+      <div class="card-body">
+        <%= form_with(model: @user, url: session_path(@user), local: true) do |f| %>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+          </div>
 
-<%= form_with model: resource, as: resource_name, url: session_path(resource_name), local: true do |f| %>
-  <div class="form-group">
-    <%= f.label :email, class: "control-label" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-  </div>
+          <div class="form-group">
+            <%= f.label :password, "パスワード" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+          </div>
 
-  <div class="form-group">
-    <%= f.label :password, class: "control-label" %>
-    <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-  </div>
+          <%= f.submit "Log in", class: 'btn btn-secondary rounded-pill' %><br>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="form-check">
-      <%= f.check_box :remember_me, class: "form-check-input" %>
-      <%= f.label :remember_me, class: "form-check-label" %>
+        <% end %>
+          <%= link_to "新規登録はこちら", new_user_registration_path, class: 'd-block my-2' %>
+          <%= link_to "ゲストユーザーとしてログイン", users_guest_login_path, method: :post %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in", class: "btn btn-primary mt-3" %>
   </div>
-<% end %>
-
-<%= link_to "ゲストユーザーとしてログイン", users_guest_login_path, method: :post %><br>
-<%= render "public/shared/links" %>
+</div>

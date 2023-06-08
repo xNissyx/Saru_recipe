@@ -20,7 +20,7 @@
     <%= f.number_field :calorie, class: 'form-control' %>
   </div>
   
-  <div id="ingredients">
+  <div class="mb-3" id="ingredients">
     <%= f.fields_for :ingredients do |ingredient| %>
       <%= render 'ingredient_fields', f: ingredient %>
     <% end %>

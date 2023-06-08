@@ -1,39 +1,49 @@
 <div class="container">
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      <div class="list-group">
+          <li class="list-group-item list-group-item-dark">タグ一覧（人気順）</li>
+        <% @tags.each do |tag| %>
+          <%= link_to tag.name, tag_recipes_path(tag_id: tag.id), class: "list-group-item list-group-item-action" %>
+        <% end %>
+      </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <div class="col-md-9">
+  <!-- Hero Section -->
+  <section class="hero text-center p-5 mb-5" style="background: url('https://source.unsplash.com/1600x900/?food') no-repeat center center; background-size: cover;">
+    <div class="hero-content text-white">
+      <h1 class="display-4">猿レシピへようこそ!</h1>
+      <p class="lead">猿でも簡単に作れるレシピがきっと見つかる!</p>
+    </div>
+  </section>
+
+  <!-- Featured Recipes Section -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">おすすめのレシピ</h2>
       <div class="row">
-            <!-- Sidebar -->
-            <div class="col-md-3">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action" aria-current="true">タグ一覧</a>
-                    <a href="#" class="list-group-item list-group-item-action">タグ1</a>
-                    <a href="#" class="list-group-item list-group-item-action">タグ2</a>
-                    <a href="#" class="list-group-item list-group-item-action">タグ3</a>
-                    <a href="#" class="list-group-item list-group-item-action">タグ4</a>
-                    <% @tags.each do |tag| %>
-                      <%= link_to tag.name, tag_recipes_path(tag_id: tag.id) %>
-                    <% end %>
-                </div>
+        <% @recipes.each do |recipe| %>
+          <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <%= link_to recipe_path(recipe) do %>
+              <%= image_tag recipe.get_image, class: "card-img-top", style: "height: 150px;" %>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title"><%= recipe.title %></h5>
+              </div>
             </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</div>
 
-            <!-- Main Content -->
-            <div class="col-md-9">
-                <!-- Hero Section -->
-                <header class="hero bg-secondary text-white text-center">
-                    <div class="container">
-                        <h1 class="display-4">あなたのレシピサイトへようこそ!</h1>
-                        <p class="lead">美味しい料理を作るための簡単で楽しいレシピを提供します。</p>
-                    </div>
-                </header>
-
-                <!-- Featured Recipes Section -->
-                <section class="py-5">
-                    <div class="container">
-                        <h2 class="text-center mb-4">おすすめのレシピ</h2>
-                        <div class="row">
-                            <!-- Add your recipe cards here -->
-                        </div>
-                    </div>
-                </section>
-                </div>
-            </div>
-        </div>
+      </section>
+    </div>
+  </div>
 </div>
