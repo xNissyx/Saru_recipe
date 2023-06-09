@@ -1,10 +1,10 @@
 <div class="row justify-content-center">
   <div class="col-md-6">
     <div class="card">
-      <div class="card-header bg-secondary text-white">
+      <div class="card-header bg-secondary text-white text-center">
         <h3 class="card-title">退会の確認</h3>
       </div>
-      <div class="card-body">
+      <div class="card-body text-center">
         <p class="card-text">本当に退会しますか？ 一度退会をすると、すべての情報が消去されます。</p>
         <%= form_with url: withdraw_users_path, method: :patch, local: true do |f| %>
           <div class="form-group">
