@@ -13,10 +13,6 @@
  *= require_tree .
  *= require_self
  */
-header.navbar {
-  background-color: #FFD700;
-} 
- 
 body {
   font-family: 'Nunito', sans-serif;
   background-color: #f8f9fa;
@@ -43,4 +39,25 @@ body {
   width: 100%;  /* カードの幅に合わせて画像を拡大・縮小 */
   height: 150px;  /* 高さを指定 */
   object-fit: cover;  /* 画像のアスペクト比を保持しつつ、指定されたサイズに収まるように表示 */
+}
+
+/*マイページ編集*/
+.profile-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.profile-form .form-label {
+  font-weight: bold;
+  color: #333;
+}
+
+.profile-form .form-control-file {
+  border: none;
+}
+
+.profile-form .btn {
+  width: 100%;
 }

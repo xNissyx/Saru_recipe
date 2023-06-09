@@ -1,19 +1,16 @@
-<%= form_with(model: @user, url: users_path(@user), local: true) do |f| %>
-  <table class="table">
-    <tbody>
-      <tr>
-        <th scope="row">プロフィール画像</th>
-        <td><%= f.file_field :image, accept: "image/*" %></td>
-      </tr>
-      <tr>
-        <th scope="row">名前</th>
-        <td><%= f.text_field :name, class: 'form-control' %></td>
-      </tr>
-      <tr>
-        <th scope="row">メールアドレス</th>
-        <td><%= f.email_field :email, class: 'form-control' %></td>
-      </tr>
-    </tbody>
-  </table>
-  <%= f.submit "更新", class: "btn btn-primary" %>
+<%= form_with(model: @user, url: users_path(@user), local: true, html: { class: "profile-form" }) do |f| %>
+  <div class="form-group">
+    <%= f.label :image, "プロフィール画像", class: "form-label" %>
+    <%= f.file_field :image, accept: "image/*", class: "form-control-file", id: "profile-image-upload" %>
+    <img id="profile-image-preview" />
+  </div>
+  <div class="form-group">
+    <%= f.label :name, "名前", class: "form-label" %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, "メールアドレス", class: "form-label" %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
+  <%= f.submit "更新", class: "btn btn-primary mt-3" %>
 <% end %>
