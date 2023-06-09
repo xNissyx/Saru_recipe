@@ -1,13 +1,13 @@
 <h1>コメント管理画面</h1>
 <%= link_to "ユーザー管理画面はこちら", admin_users_path %><br>
-<%= link_to "タグ管理画面はこちら", admin_tags_path %>
+<%= link_to "タグ管理画面はこちら", admin_tags_path, class: "d-block my-2" %>
 <div class="table-responsive">
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
         <th>ユーザーネーム</th>
-        <th>Email</th>
         <th>コメント内容</th>
+        <th>投稿日時</th>
         <th></th>
       </tr>
     </thead>
@@ -15,8 +15,8 @@
       <% @comments.each do |comment| %>
         <tr>
           <td><%= comment.user.name %></td>
-          <td><%= comment.user.email %></td>
           <td><%= comment.content %></td>
+          <td><%= comment.created_at %></td>
           <td>
             <%= link_to "削除", admin_comment_path(comment), method: :delete, data: { confirm: "本当に削除しますか？"}, class: "btn btn-danger btn-sm" %>
           </td>
