@@ -10,12 +10,19 @@ class Recipe < ApplicationRecord
   # ActiveStorage用
   has_one_attached :image
 
+  # def get_image
+  #   if image.attached?
+  #     image
+  #   else
+  #   # Blobオブジェクトにしかvariantメソッドは使えないため、ここで変換している
+  #     ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/no_image.jpg')), filename: 'no_image.jpg')
+  #   end
+  # end
+  
   def get_image
     if image.attached?
       image
-    else
-    # Blobオブジェクトにしかvariantメソッドは使えないため、ここで変換している
-      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/no_image.jpg')), filename: 'no_image.jpg')
     end
   end
+
 end

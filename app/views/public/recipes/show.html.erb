@@ -1,4 +1,8 @@
-<%= image_tag @recipe.get_image.variant( resize: "100x100^", gravity: "center", crop: "100x100+0+0" ).processed %>
+<% if @recipe.get_image.present? %>
+  <%= image_tag @recipe.get_image.variant( resize: "100x100^", gravity: "center", crop: "100x100+0+0" ).processed %>
+<% else %>
+  <%= image_tag "no_image.jpg", size: "100x100" %>
+<% end %>
 <table class="table">
   <tbody>
     <tr>
