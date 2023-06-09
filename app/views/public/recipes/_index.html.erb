@@ -2,10 +2,6 @@
   <% recipes.each do |recipe| %>
     <div class="col-lg-4 col-md-6 mb-4">
       <div class="card h-100">
-        <%#= link_to recipe do %>
-          <%#= image_tag recipe.get_image.variant( resize: "300x200^", gravity: "center", crop: "300x200+0+0" ).processed, class: 'card-img-top' %>
-          <%#= image_tag(recipe.get_image&.variant(resize: "300x200^", gravity: "center", crop: "300x200+0+0").processed, class: 'card-img-top') || image_path("default_image.jpg") %>
-        <%# end %>
         <%= link_to recipe do %>
           <% if recipe.get_image.present? %>
             <%= image_tag recipe.get_image.variant( resize: "300x200^", gravity: "center", crop: "300x200+0+0" ).processed, class: 'card-img-top' %>
@@ -20,7 +16,8 @@
           <p class="card-text text-center"><%= recipe.description.truncate(100) %></p>
         </div>
         <div class="card-footer text-center">
-          <small class="text-muted">カロリー: <%= recipe.calorie %></small>
+          <small class="text-muted">カロリー: <%= recipe.calorie %></small><br>
+          <small class="text-muted">作成者: <%= recipe.user.name %></small>
         </div>
       </div>
     </div>
