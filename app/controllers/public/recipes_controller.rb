@@ -2,7 +2,8 @@ class Public::RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipe.all
+    # N+1問題の解消
+    @recipes = Recipe.includes(:user, image_attachment: :blob).all
   end
 
   def show
