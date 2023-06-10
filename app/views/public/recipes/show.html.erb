@@ -42,9 +42,9 @@
 <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
 <%= link_to 'Back', recipes_path %><br>
 
-<% if current_user.bookmarking?(@recipe) %>
+<% if current_user && current_user.bookmarking?(@recipe) %>
   <%= link_to 'ブックマーク解除する', recipe_bookmark_path(@recipe), method: :delete %>
-<% else %>
+<% elsif current_user %>
   <%= link_to 'ブックマークする', recipe_bookmark_path(@recipe), method: :post %>
 <% end %>
 
