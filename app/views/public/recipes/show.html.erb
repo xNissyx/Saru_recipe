@@ -13,25 +13,24 @@
         <h5 class="card-title">by&nbsp;<%= @recipe.user.name %></h5>
         <p class="card-text"><%= @recipe.description %></p>
         <ul class="list-group list-group-flush">
-  <li class="list-group-item">カロリー: <%= @recipe.calorie %>kcal</li>
-  <li class="list-group-item">材料:
-    <ul class="list-group list-group-flush">
-      <% @recipe.ingredients.each do |ingredient| %>
-        <li class="list-group-item">
-          <%= ingredient.name %> : <%= ingredient.quantity %>
-        </li>
-      <% end %>
-    </ul>
-  </li>
-  <li class="list-group-item">タグ:
-    <% @recipe.tags.each do |tag| %>
-      <%= link_to tag_recipes_path(tag_id: tag.id), class: "btn btn-sm bg-secondary text-white" do %>
-        <%= tag.name %>
-      <% end %>
-    <% end %>
-  </li>
-</ul>
-
+          <li class="list-group-item">カロリー: <%= @recipe.calorie %>kcal</li>
+          <li class="list-group-item">材料:
+            <ul class="list-group list-group-flush">
+              <% @recipe.ingredients.each do |ingredient| %>
+                <li class="list-group-item">
+                  <%= ingredient.name %> : <%= ingredient.quantity %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="list-group-item">タグ:
+            <% @recipe.tags.each do |tag| %>
+              <%= link_to tag_recipes_path(tag_id: tag.id), class: "btn btn-sm bg-secondary text-white" do %>
+                <%= tag.name %>
+              <% end %>
+            <% end %>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -52,7 +51,8 @@
   <div class="card mb-4 shadow-sm">
     <div class="card-body">
       <p class="card-text"><%= comment.content %></p>
-      <small class="text-muted"><%= comment.user.name %> <%= comment.score %></small>
+      <div id="comment_raty_<%= comment.id %>" data-score="<%= comment.score %>"></div>
+      <small class="text-muted"><%= comment.user.name %></small>
     </div>
     <% if comment.user_id == current_user.id %>
       <%= link_to '削除', recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: 'コメントを削除しますか？' }, class: "btn btn-danger" %>
@@ -60,4 +60,26 @@
   </div>
 <% end %>
 
-<%= render "public/comments/form" %>
+<%= render "public/comments/form", recipe: @recipe %>
+
+<script>
+  $(document).on('turbolinks:load', function () {
+    <% @recipe.comments.each do |comment| %>
+      <% next unless comment.id %>
+      let commentElem<%= comment.id %> = document.querySelector('#comment_raty_<%= comment.id %>');
+      
+      commentElem<%= comment.id %>.innerHTML = "";
+      
+      let opt<%= comment.id %> = {
+        size     : 38,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        score: <%= comment.score.nil? ? 0 : comment.score %>,  // score from each comment
+        half: true,
+        readOnly: true
+      };
+      raty(commentElem<%= comment.id %>, opt<%= comment.id %>);
+    <% end %>
+  });
+</script>

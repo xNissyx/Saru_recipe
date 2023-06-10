@@ -12,6 +12,13 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+// Ratyを呼び出せるようにする記述
+import Raty from "raty.js"
+window.raty = function(elem,opt) {
+  let raty =  new Raty(elem,opt)
+  raty.init();
+  return raty;
+}
 
 require("jquery")
 require("@nathanvda/cocoon")
