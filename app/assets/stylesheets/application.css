@@ -13,10 +13,6 @@
  *= require_tree .
  *= require_self
  */
-header.navbar {
-  background-color: #FFD700;
-} 
- 
 body {
   font-family: 'Nunito', sans-serif;
   background-color: #f8f9fa;
