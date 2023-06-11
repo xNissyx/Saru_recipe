@@ -1,0 +1,14 @@
+<%= form_with(model: [ @recipe, @recipe.comments.build ], local: true) do |form| %>
+  <!--ここにRaty適用させる-->
+  <div class="mb-3">
+    <%= form.label :score, class: 'form-label' %>
+    <%= form.text_field :score, class: 'form-control' %>
+  </div>
+  
+  
+  <div class="mb-3">
+    <%= form.label :content, class: 'form-label' %>
+    <%= form.text_area :content, class: 'form-control' %>
+  </div>
+  <%= form.submit class: 'btn btn-primary' %>
+<% end %>

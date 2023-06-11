@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <h1 class="text-center mb-4 text-muted">管理者ダッシュボード</h1>
+
+  <div class="row">
+    <!-- Recipes Section -->
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title text-muted text-center">レシピの管理</h2>
+          <%= link_to '全てのレシピを表示', admin_comments_path, class: 'btn btn-dark btn-sm btn-block rounded-pill' %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Users Section -->
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title text-muted text-center">ユーザーの管理</h2>
+          <%= link_to '全てのユーザーを表示', admin_users_path, class: 'btn btn-dark btn-sm btn-block rounded-pill' %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tags Section -->
+    <div class="col-md-4 mb-4">
+      <div class="card border-0 shadow-sm text-center">
+        <div class="card-body">
+          <h2 class="card-title text-muted">タグの管理</h2>
+          <%= link_to '全てのタグを表示', admin_tags_path, class: 'btn btn-dark btn-sm btn-block rounded-pill' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

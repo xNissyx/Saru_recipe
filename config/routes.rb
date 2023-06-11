@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'homes/top'
+  end
   scope module: :public do
     root 'homes#top'
     
@@ -23,12 +26,16 @@ Rails.application.routes.draw do
       resource :bookmark, only: [:create, :destroy]
       collection do
         get 'search'
-        get 'tag_search'
       end
     end
+    
+    # タグ検索用ルーティング
+    get 'tags/:tag_id/recipes', to: 'recipes#tag_search', as: 'tag_recipes'
 
     resources :chatbots, only: [:create]
   end
+  
+  get '/admin', to: 'admin/homes#top'  
 
   devise_for :admins, controllers: {
       sessions: 'admin/sessions'
@@ -37,6 +44,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :update]
     resources :comments, only: [:index, :destroy]
+    resources :tags, except: [:show, :edit, :update]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

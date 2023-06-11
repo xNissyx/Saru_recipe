@@ -3,7 +3,12 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title"><%= @user.name %></h5>
-        <%= link_to 'プロフィールを編集',  information_edit_users_path(@user), class: 'btn btn-primary' %>
+        <%= image_tag @user.get_image.variant(resize: "100x100").processed %><br>
+        <%= link_to 'プロフィールを編集',  information_edit_users_path(@user), class: 'my-3 btn btn-primary' %>
+        <% if @user.bookmarks.present? %>
+          <p><strong>ブックマークしたレシピはこちら</strong></p>
+          <%= render "public/recipes/index", recipes: @recipes %>
+        <% end %>
       </div>
     </div>
   </div>

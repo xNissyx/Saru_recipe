@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+header.navbar {
+  background-color: #FFD700;
+} 
+ 
+body {
+  font-family: 'Nunito', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.hero {
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.hero-content {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 20px;
+}
+.navbar-brand img, .navbar-brand h1 {
+  vertical-align: middle;
+}

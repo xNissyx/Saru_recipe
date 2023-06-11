@@ -1,0 +1,58 @@
+<%= image_tag @recipe.get_image.variant( resize: "100x100^", gravity: "center", crop: "100x100+0+0" ).processed %>
+<table class="table">
+  <tbody>
+    <tr>
+      <th scope="row"><strong>レシピ名</strong></th>
+      <td><%= @recipe.title %></td>
+    </tr>
+    <tr>
+      <th scope="row"><strong>レシピの説明</strong></th>
+      <td><%= @recipe.description %></td>
+    </tr>
+    <tr>
+      <th scope="row"><strong>カロリー</strong></th>
+      <td><%= @recipe.calorie %>kcal</td>
+    </tr>
+    <tr>
+      <th scope="row"><strong>タグ</strong></th>
+      <td>
+        <% @recipe.tags.each do |tag| %>
+          <%= link_to tag_recipes_path(tag_id: tag.id), class: "btn btn-sm bg-secondary" do %>
+            <%= tag.name %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row"><strong>材料</strong></th>
+      <td>
+        <% @recipe.ingredients.each do |ingredient| %>
+            <%= ingredient.name %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<%= link_to 'Back', recipes_path %><br>
+
+<% if current_user.bookmarking?(@recipe) %>
+  <%= link_to 'ブックマーク解除する', recipe_bookmark_path(@recipe), method: :delete %>
+<% else %>
+  <%= link_to 'ブックマークする', recipe_bookmark_path(@recipe), method: :post %>
+<% end %>
+
+<% @recipe.comments.each do |comment| %>
+  <p>
+    <%= comment.user.name %>:
+    <%= comment.content %>
+    <%= comment.score %>
+    <% if comment.user_id == current_user.id %>
+      <%= link_to '削除', recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: 'コメントを削除しますか？' } %>
+    <% end %>
+  </p>
+<% end %>
+
+<%= render "public/comments/form" %>
