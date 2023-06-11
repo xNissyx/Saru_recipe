@@ -36,7 +36,9 @@
   </div>
 
   <div class="card-footer">
-    <%= link_to '編集する', edit_recipe_path(@recipe), class: "btn btn-primary" %> |
+    <% if current_user && (comment.user_id == current_user.id) %>
+      <%= link_to '編集する', edit_recipe_path(@recipe), class: "btn btn-primary" %> |
+    <% end %>
     <%= link_to '一覧に戻る', recipes_path, class: "btn btn-secondary" %><br>
 
     <% if current_user && current_user.bookmarking?(@recipe) %>
@@ -54,7 +56,7 @@
       <div id="comment_raty_<%= comment.id %>" data-score="<%= comment.score %>"></div>
       <small class="text-muted"><%= comment.user.name %></small>
     </div>
-    <% if comment.user_id == current_user.id %>
+    <% if current_user && (comment.user_id == current_user.id) %>
       <%= link_to '削除', recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: 'コメントを削除しますか？' }, class: "btn btn-danger" %>
     <% end %>
   </div>
