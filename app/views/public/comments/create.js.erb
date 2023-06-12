@@ -1,0 +1,14 @@
+$('#comment').append("<%= escape_javascript(render('comment', comment: @comment)) %>");
+
+let commentElem<%= @comment.id %> = document.querySelector('#comment_raty_<%= @comment.id %>');
+
+commentElem<%= @comment.id %>.innerHTML = "";
+
+let opt<%= @comment.id %> = {
+  size     : 38,
+  starOff:  '<%= asset_path('star-off.png') %>',
+  starOn : '<%= asset_path('star-on.png') %>',
+  score: <%= @comment.score.nil? ? 0 : @comment.score %>,
+  readOnly: true
+};
+raty(commentElem<%= @comment.id %>, opt<%= @comment.id %>);
