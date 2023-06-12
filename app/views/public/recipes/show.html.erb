@@ -36,16 +36,13 @@
   </div>
 
   <div class="card-footer">
-    <% if current_user && (comment.user_id == current_user.id) %>
+    <% if current_user && (@recipe.user_id == current_user.id) %>
       <%= link_to '編集する', edit_recipe_path(@recipe), class: "btn btn-primary" %> |
     <% end %>
     <%= link_to '一覧に戻る', recipes_path, class: "btn btn-secondary" %><br>
-
-    <% if current_user && current_user.bookmarking?(@recipe) %>
-      <%= link_to 'ブックマーク解除する', recipe_bookmark_path(@recipe), method: :delete, class: "btn btn-danger" %>
-    <% elsif current_user %>
-      <%= link_to 'ブックマークする', recipe_bookmark_path(@recipe), method: :post, class: "btn btn-success" %>
-    <% end %>
+<div id="bookmark">
+    <%= render "public/bookmarks/bookmark", recipe: @recipe %>
+</div>
   </div>
 </div>
 
@@ -69,9 +66,9 @@
     <% @recipe.comments.each do |comment| %>
       <% next unless comment.id %>
       let commentElem<%= comment.id %> = document.querySelector('#comment_raty_<%= comment.id %>');
-      
+
       commentElem<%= comment.id %>.innerHTML = "";
-      
+
       let opt<%= comment.id %> = {
         size     : 38,
         starOff:  '<%= asset_path('star-off.png') %>',

@@ -1,0 +1,5 @@
+<% if current_user && current_user.bookmarking?(recipe) %>
+  <%= link_to 'ブックマーク解除する', recipe_bookmarks_path(recipe), method: :delete, class: "btn btn-danger", remote: true %>
+<% elsif current_user %>
+  <%= link_to 'ブックマークする', recipe_bookmarks_path(recipe), method: :post, class: "btn btn-success", remote: true %>
+<% end %>
