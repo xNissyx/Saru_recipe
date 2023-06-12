@@ -1,5 +1,9 @@
 <% if current_user && current_user.bookmarking?(recipe) %>
-  <%= link_to 'ブックマーク解除する', recipe_bookmarks_path(recipe), method: :delete, class: "btn btn-danger", remote: true %>
+  <%= link_to recipe_bookmarks_path(recipe), method: :delete,remote: true do %>
+    <i class="fa-solid fa-bookmark"></i>
+  <% end %>
 <% elsif current_user %>
-  <%= link_to 'ブックマークする', recipe_bookmarks_path(recipe), method: :post, class: "btn btn-success", remote: true %>
+  <%= link_to recipe_bookmarks_path(recipe), method: :post, remote: true do %>
+    <i class="fa-regular fa-bookmark"></i>
+  <% end %>
 <% end %>
