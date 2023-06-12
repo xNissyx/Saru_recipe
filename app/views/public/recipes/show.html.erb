@@ -50,18 +50,11 @@
   </div>
 </div>
 
-<% @recipe.comments.each do |comment| %>
-  <div class="card mb-4 shadow-sm">
-    <div class="card-body">
-      <p class="card-text"><%= comment.content %></p>
-      <div id="comment_raty_<%= comment.id %>" data-score="<%= comment.score %>"></div>
-      <small class="text-muted"><%= comment.user.name %></small>
-    </div>
-    <% if current_user && (comment.user_id == current_user.id) %>
-      <%= link_to '削除', recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: 'コメントを削除しますか？' }, class: "btn btn-danger" %>
-    <% end %>
-  </div>
-<% end %>
+<div id="comment">
+  <% @recipe.comments.each do |comment| %>
+    <%= render "public/comments/comment", comment: comment %>
+  <% end %>
+</div>
 
 <%= render "public/comments/form", recipe: @recipe %>
 
@@ -77,9 +70,7 @@
         size     : 38,
         starOff:  '<%= asset_path('star-off.png') %>',
         starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: '<%= asset_path('star-half.png') %>',
-        score: <%= comment.score.nil? ? 0 : comment.score %>,  // score from each comment
-        half: true,
+        score: <%= comment.score.nil? ? 0 : comment.score %>,
         readOnly: true
       };
       raty(commentElem<%= comment.id %>, opt<%= comment.id %>);

@@ -1,4 +1,4 @@
-<%= form_with(model: [ @recipe, @recipe.comments.build ], local: true) do |form| %>
+<%= form_with(model: [ @recipe, @recipe.comments.build ], local: false) do |form| %>
 
   <div id="post_raty"></div>
   
@@ -19,8 +19,6 @@ $(document).on('turbolinks:load', function () {
     size     : 38,
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
-    starHalf: '<%= asset_path('star-half.png') %>',
-    half: true,
     scoreName: 'comment[score]',
   };
 
