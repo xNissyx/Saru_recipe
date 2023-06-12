@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
     resources :recipes do
       resources :comments, only: [:create, :destroy]
-      resource :bookmark, only: [:create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
       collection do
         get 'search'
       end
