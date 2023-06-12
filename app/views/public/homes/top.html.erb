@@ -11,12 +11,33 @@
     </div>
 
     <div class="col-md-9">
+      <section class="hero text-center p-5 mb-5" style="background: url('https://source.unsplash.com/1600x900/?food') no-repeat center center; background-size: cover;">
+        <div class="hero-content text-white">
+          <h1 class="display-4">猿レシピへようこそ!</h1>
+          <p class="lead">猿でも簡単に作れるレシピがきっと見つかる!</p>
+        </div>
+      </section>
+      
+      <section class="py-5">
+        <div class="container">
+          <h2 class="text-center mb-4">おすすめのレシピ</h2>
+          <div class="row">
+            <% @recipes.each do |recipe| %>
+              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100">
+                  <%= link_to recipe_path(recipe) do %>
+                    <%= image_tag recipe.get_image, class: "card-img-top", style: "height: 150px;" %>
+                  <% end %>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= recipe.title %></h5>
+                  </div>
+                </div>
       
               </div>
             <% end %>
           </div>
         </div>
       </section>
-      </div>
+    </div>
   </div>
 </div>
