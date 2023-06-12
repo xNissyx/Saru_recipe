@@ -6,7 +6,7 @@
       </div>
       <div class="card-body text-center">
         <p class="card-text">本当に退会しますか？ 一度退会をすると、すべての情報が消去されます。</p>
-        <%= form_with url: withdraw_users_path, method: :patch, local: true do |f| %>
+        <%= form_with url: withdraw_user_path, method: :patch, local: true do |f| %>
           <div class="form-group">
             <%= f.submit "退会する", class: "btn btn-danger btn-block", data: { confirm: "本当に退会しますか？" } %>
           </div>
