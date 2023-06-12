@@ -1,11 +1,18 @@
 <div class="card shadow-sm p-3 mb-5 bg-white">
   <div class="row no-gutters">
     <div class="col-md-4">
-      <% if @recipe.get_image.present? %>
-        <%= image_tag @recipe.get_image.variant(resize: "300x300^", gravity: "center", crop: "300x300+0+0" ).processed, class: "card-img" %>
-      <% else %>
-        <%= image_tag "no_image.jpg", size: "300x300", class: "card-img shadow" %>
-      <% end %>
+      <div class="bookmark-container">
+        <% if @recipe.get_image.present? %>
+          <%= image_tag @recipe.get_image.variant(resize: "300x300^", gravity: "center", crop: "300x300+0+0" ).processed, class: "card-img" %>
+        <% else %>
+          <%= image_tag "no_image.jpg", size: "300x300", class: "card-img shadow" %>
+        <% end %>
+
+        <div id="bookmark">
+          <%= render 'public/bookmarks/bookmark', recipe: @recipe %>
+        </div>
+      </div>
+
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -40,9 +47,6 @@
       <%= link_to '編集する', edit_recipe_path(@recipe), class: "btn btn-primary" %> |
     <% end %>
     <%= link_to '一覧に戻る', recipes_path, class: "btn btn-secondary" %><br>
-<div id="bookmark">
-    <%= render "public/bookmarks/bookmark", recipe: @recipe %>
-</div>
   </div>
 </div>
 
