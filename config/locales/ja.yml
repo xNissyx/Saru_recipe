@@ -2,11 +2,18 @@
 ja:
   activerecord:
     errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
+      models:
+        user:
+          attributes:
+            name:
+              blank: "名前を正しく入力してください"
+            email:
+              blank: "Ｅメールを正しく入力してください"
+            password:
+              blank: "パスワードを正しく入力してください"
+              too_short: "パスワードは%{count}文字以上で入力してください"
+            password_confirmation:
+              confirmation: "パスワードとパスワード（確認用）が一致していません"
   date:
     abbr_day_names:
     - 日
@@ -17,7 +24,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -43,7 +50,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -83,7 +90,7 @@ ja:
       month: 月
       year: 年
   errors:
-    format: "%{attribute}%{message}"
+    format: "%{message}"
     messages:
       accepted: を受諾してください
       blank: を入力してください

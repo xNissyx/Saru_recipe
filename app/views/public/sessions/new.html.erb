@@ -8,12 +8,14 @@
         <%= form_with(model: @user, url: session_path(@user), local: true) do |f| %>
           <div class="form-group">
             <%= f.label :email %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+            <%= f.email_field :email, autofocus: true, class: "form-control #{'is-invalid' if @user.errors[:email].any?}" %>
+            <%= error_message_for(:email, @user) %>
           </div>
 
           <div class="form-group">
             <%= f.label :password, "パスワード" %>
-            <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+            <%= f.password_field :password, class: "form-control #{'is-invalid' if @user.errors[:password].any?}" %>
+            <%= error_message_for(:password, @user) %>
           </div>
 
           <%= f.submit "Log in", class: 'btn btn-secondary rounded-pill' %><br>

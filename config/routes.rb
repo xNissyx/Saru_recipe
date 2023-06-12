@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
   scope module: :public do
     root 'homes#top'
-    
+
     resource :users, only: [:update] do
       member do
         get 'confirm'
@@ -15,7 +15,12 @@ Rails.application.routes.draw do
       get 'information/edit', to: 'users#edit'
       get 'mypage', action: :show, as: :mypage
     end
-    
+
+    devise_scope :user do
+      # 新規登録失敗後のリダイレクトのエラーを防ぐルーティング
+      get '/users', to: 'registrations#new'
+    end
+
     devise_for :users, controllers: {
       registrations: 'public/registrations',
       sessions: 'public/sessions'
@@ -29,14 +34,14 @@ Rails.application.routes.draw do
         get 'search'
       end
     end
-    
+
     # タグ検索用ルーティング
     get 'tags/:tag_id/recipes', to: 'recipes#tag_search', as: 'tag_recipes'
 
     resources :chatbots, only: [:create]
   end
-  
-  get '/admin', to: 'admin/homes#top'  
+
+  get '/admin', to: 'admin/homes#top'
 
   devise_for :admins, controllers: {
       sessions: 'admin/sessions'
