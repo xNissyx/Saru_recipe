@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     
-    resource :users, only: [:show, :update] do
+    resource :users, only: [:update] do
       member do
         get 'confirm'
         patch 'withdraw'
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       end
       # deviseのルーティングと被るため、informationを追加
       get 'information/edit', to: 'users#edit'
+      get 'mypage', action: :show, as: :mypage
     end
     
     devise_for :users, controllers: {
