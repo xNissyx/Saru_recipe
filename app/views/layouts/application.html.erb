@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c535638148.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -15,12 +15,20 @@
 
   <body>
     <%= render "layouts/header" %>
-    <%= notice %>
+
     <main class="min-vh-100">
     <div class="container">
-    <%= yield %>
+      <div class="d-flex justify-content-center">
+        <% if notice %>
+          <div class="alert alert-dark mb-3 d-inline-block" role="alert">
+            <%= notice %>
+          </div>
+        <% end %>
+      </div>
+      <%= yield %>
     </div>
     </main>
+
     <%= render "layouts/footer" %>
   </body>
 </html>
