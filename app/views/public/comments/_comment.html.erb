@@ -1,12 +1,12 @@
-
-<div class="card mb-4 shadow-sm">
+<div class="card mb-4 shadow-sm mx-auto" style="max-width: 500px;">
   <div class="card-body">
-    <p class="card-text"><%= comment.content %></p>
     <div id="comment_raty_<%= comment.id %>" data-score="<%= comment.score %>"></div>
-    <small class="text-muted"><%= comment.user.name %></small>
+    <p class="card-text mt-3"><%= comment.content %></p>
+    <div class="d-flex justify-content-between align-items-center">
+      <small class="text-muted">by&nbsp;<%= comment.user.name %></small>
+      <% if current_user && (comment.user_id == current_user.id) %>
+        <%= link_to '削除', recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: 'コメントを削除しますか？' }, class: "btn btn-sm btn-outline-danger" %>
+      <% end %>
+    </div>
   </div>
-<% if current_user && (comment.user_id == current_user.id) %>
-  <%= link_to '削除', recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: 'コメントを削除しますか？' }, class: "btn btn-danger" %>
-<% end %>
-
 </div>
