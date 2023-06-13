@@ -1,5 +1,7 @@
 class Public::RecipesController < ApplicationController
-  before_action :set_recipe, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :ensure_recipe, only: [:edit, :update, :destroy]
+
 
   def index
     # N+1問題の解消
@@ -7,6 +9,7 @@ class Public::RecipesController < ApplicationController
   end
 
   def show
+    @recipe = Recipe.find(params[:id])
   end
 
   def new
@@ -49,12 +52,17 @@ class Public::RecipesController < ApplicationController
   end
 
   private
-
-    def set_recipe
-      @recipe = Recipe.find(params[:id])
+  
+  def ensure_recipe
+    @recipe = Recipe.find(params[:id])
+    if @recipe.nil? || (@recipe.user != current_user)
+      redirect_to recipes_path, notice: "このレシピを編集できるのは本人のみです"
+      return
     end
+  end
 
-    def recipe_params
-      params.require(:recipe).permit(:title, :description, :calorie, :user_id, :image, tag_ids: [], ingredients_attributes: [:id, :name, :quantity, :_destroy])
-    end
+  def recipe_params
+    params.require(:recipe).permit(:title, :description, :calorie, :user_id, :image, tag_ids: [], ingredients_attributes: [:id, :name, :quantity, :_destroy])
+  end
+  
 end
