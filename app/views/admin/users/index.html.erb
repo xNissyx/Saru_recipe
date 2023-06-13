@@ -1,6 +1,6 @@
 <h1>ユーザー管理画面</h1>
 <%= link_to "コメント管理画面はこちら", admin_comments_path %><br>
-<%= link_to "タグ管理画面はこちら", admin_tags_path %>
+<%= link_to "タグ管理画面はこちら", admin_tags_path, class: "d-block my-2" %>
 <div class="table-responsive">
   <table class="table table-hover">
     <thead class="thead-dark">
@@ -16,7 +16,7 @@
         <tr>
           <td><%= user.name %></td>
           <td><%= user.email %></td>
-          <td><%= user.is_deleted ? '削除済み' : 'アクティブ' %></td>
+          <td><%= user.is_deleted ? '<span class="text-danger">退会済み</span>'.html_safe : '<span class="text-success">アクティブ</span>'.html_safe %></td>
           <td>
             <%= form_with model: [:admin, user],url: admin_user_path(user),  method: :patch do |f| %>
               <%= f.hidden_field :is_deleted, value: !user.is_deleted %>

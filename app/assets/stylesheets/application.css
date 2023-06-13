@@ -13,10 +13,6 @@
  *= require_tree .
  *= require_self
  */
-header.navbar {
-  background-color: #FFD700;
-} 
- 
 body {
   font-family: 'Nunito', sans-serif;
   background-color: #f8f9fa;
@@ -37,4 +33,24 @@ body {
 }
 .navbar-brand img, .navbar-brand h1 {
   vertical-align: middle;
+}
+
+.recommended-recipe {
+  width: 100%;  /* カードの幅に合わせて画像を拡大・縮小 */
+  height: 150px;  /* 高さを指定 */
+  object-fit: cover;  /* 画像のアスペクト比を保持しつつ、指定されたサイズに収まるように表示 */
+}
+
+.fa-bookmark {
+  font-size: 150%;
+}
+
+.bookmark-container {
+  position: relative;
+}
+
+#bookmark {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
 }

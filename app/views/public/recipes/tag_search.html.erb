@@ -1,7 +1,3 @@
-<h1>Tag: <%= @tag.name %></h1>
+<h2>"<%= @tag.name %>"のタグを持つレシピ一覧</h2>
 
-<ul>
-  <% @recipes.each do |recipe| %>
-    <li><%= link_to recipe.title, recipe_path(recipe) %></li>
-  <% end %>
-</ul>
+<%= render "index", recipes: @recipes %>

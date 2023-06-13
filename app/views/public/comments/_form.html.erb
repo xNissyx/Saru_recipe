@@ -1,10 +1,6 @@
-<%= form_with(model: [ @recipe, @recipe.comments.build ], local: true) do |form| %>
-  <!--ここにRaty適用させる-->
-  <div class="mb-3">
-    <%= form.label :score, class: 'form-label' %>
-    <%= form.text_field :score, class: 'form-control' %>
-  </div>
-  
+<%= form_with(model: [ @recipe, @recipe.comments.build ], local: false) do |form| %>
+
+  <div id="post_raty"></div>
   
   <div class="mb-3">
     <%= form.label :content, class: 'form-label' %>
@@ -12,3 +8,20 @@
   </div>
   <%= form.submit class: 'btn btn-primary' %>
 <% end %>
+
+<script>
+$(document).on('turbolinks:load', function () {
+  let elem = document.querySelector('#post_raty');
+  
+  elem.innerHTML = "";
+  
+  let opt = {
+    size     : 38,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    scoreName: 'comment[score]',
+  };
+
+  raty(elem,opt);
+});
+</script>

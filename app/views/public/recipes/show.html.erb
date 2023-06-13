@@ -1,58 +1,82 @@
-<%= image_tag @recipe.get_image.variant( resize: "100x100^", gravity: "center", crop: "100x100+0+0" ).processed %>
-<table class="table">
-  <tbody>
-    <tr>
-      <th scope="row"><strong>レシピ名</strong></th>
-      <td><%= @recipe.title %></td>
-    </tr>
-    <tr>
-      <th scope="row"><strong>レシピの説明</strong></th>
-      <td><%= @recipe.description %></td>
-    </tr>
-    <tr>
-      <th scope="row"><strong>カロリー</strong></th>
-      <td><%= @recipe.calorie %>kcal</td>
-    </tr>
-    <tr>
-      <th scope="row"><strong>タグ</strong></th>
-      <td>
-        <% @recipe.tags.each do |tag| %>
-          <%= link_to tag_recipes_path(tag_id: tag.id), class: "btn btn-sm bg-secondary" do %>
-            <%= tag.name %>
-          <% end %>
+<div class="card shadow-sm p-3 mb-5 bg-white">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <div class="bookmark-container">
+        <% if @recipe.get_image.present? %>
+          <%= image_tag @recipe.get_image.variant(resize: "300x300^", gravity: "center", crop: "300x300+0+0" ).processed, class: "card-img" %>
+        <% else %>
+          <%= image_tag "no_image.jpg", size: "300x300", class: "card-img shadow" %>
         <% end %>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row"><strong>材料</strong></th>
-      <td>
-        <% @recipe.ingredients.each do |ingredient| %>
-            <%= ingredient.name %>
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-</table>
 
+        <div id="bookmark">
+          <%= render 'public/bookmarks/bookmark', recipe: @recipe %>
+        </div>
+      </div>
 
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
-<%= link_to 'Back', recipes_path %><br>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title text-success"><%= @recipe.title %></h5>
+        <h5 class="card-title">by&nbsp;<%= @recipe.user.name %></h5>
+        <p class="card-text"><%= @recipe.description %></p>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">カロリー: <%= @recipe.calorie %>kcal</li>
+          <li class="list-group-item">材料:
+            <ul class="list-group list-group-flush">
+              <% @recipe.ingredients.each do |ingredient| %>
+                <li class="list-group-item">
+                  <%= ingredient.name %> : <%= ingredient.quantity %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+          <li class="list-group-item">タグ:
+            <% @recipe.tags.each do |tag| %>
+              <%= link_to tag_recipes_path(tag_id: tag.id), class: "btn btn-sm bg-secondary text-white" do %>
+                <%= tag.name %>
+              <% end %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-<% if current_user.bookmarking?(@recipe) %>
-  <%= link_to 'ブックマーク解除する', recipe_bookmark_path(@recipe), method: :delete %>
-<% else %>
-  <%= link_to 'ブックマークする', recipe_bookmark_path(@recipe), method: :post %>
-<% end %>
-
-<% @recipe.comments.each do |comment| %>
-  <p>
-    <%= comment.user.name %>:
-    <%= comment.content %>
-    <%= comment.score %>
-    <% if comment.user_id == current_user.id %>
-      <%= link_to '削除', recipe_comment_path(@recipe, comment), method: :delete, data: { confirm: 'コメントを削除しますか？' } %>
+  <div class="card-footer">
+    <% if current_user && (@recipe.user_id == current_user.id) %>
+      <%= link_to '編集する', edit_recipe_path(@recipe), class: "btn btn-primary" %> |
     <% end %>
-  </p>
-<% end %>
+    <%= link_to '一覧に戻る', recipes_path, class: "btn btn-secondary" %><br>
+  </div>
+</div>
 
-<%= render "public/comments/form" %>
+<div id="comment">
+  <% @recipe.comments.each do |comment| %>
+    <%= render "public/comments/comment", comment: comment %>
+  <% end %>
+</div>
+
+<%= render "public/comments/form", recipe: @recipe %>
+
+<script>
+$(document).on('turbolinks:load', function () {
+  <% @recipe.comments.each do |comment| %>
+    <% next unless comment.id %>
+    let commentElem<%= comment.id %> = document.querySelector('#comment_raty_<%= comment.id %>');
+
+    if (commentElem<%= comment.id %>) {
+      commentElem<%= comment.id %>.innerHTML = "";
+
+      let opt<%= comment.id %> = {
+        size     : 38,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        score: <%= comment.score.nil? ? 0 : comment.score %>,
+        readOnly: true
+      };
+      raty(commentElem<%= comment.id %>, opt<%= comment.id %>);
+    }
+  <% end %>
+});
+
+</script>

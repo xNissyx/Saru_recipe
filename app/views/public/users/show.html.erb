@@ -1,15 +1,27 @@
-<div class="row">
+<div class="row mt-5">
   <div class="col-lg-4">
     <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><%= @user.name %></h5>
-        <%= image_tag @user.get_image.variant(resize: "100x100").processed %><br>
-        <%= link_to 'プロフィールを編集',  information_edit_users_path(@user), class: 'my-3 btn btn-primary' %>
-        <% if @user.bookmarks.present? %>
-          <p><strong>ブックマークしたレシピはこちら</strong></p>
-          <%= render "public/recipes/index", recipes: @recipes %>
-        <% end %>
+      <div class="card-body text-center">
+        <%= image_tag @user.get_image.variant(resize: "150x150^", gravity: "center", crop: "150x150+0+0").processed, class: 'rounded-circle mb-3' %>
+        <h3 class="card-title"><%= @user.name %></h3>
+        <p class="text-muted">ユーザー登録日: <%= @user.created_at.strftime("%Y年%m月") %></p>
+        <%= link_to 'プロフィールを編集',  information_edit_user_path, class: 'btn btn-primary btn-block mb-3' %>
       </div>
     </div>
+  </div>
+
+  <div class="col-lg-8">
+    <% if @user.bookmarks.present? %>
+      <div class="card">
+        <div class="card-header">
+          <h3 class="mb-0"><strong>ブックマークしたレシピ</strong></h3>
+        </div>
+        <div class="card-body">
+          <%= render "public/recipes/index", recipes: @recipes %>
+        </div>
+      </div>
+    <% else %>
+      <div class="alert alert-info">ブックマークしたレシピはありません。</div>
+    <% end %>
   </div>
 </div>
