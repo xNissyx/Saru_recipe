@@ -1,4 +1,9 @@
 class Recipe < ApplicationRecord
+  validates :user_id, presence: true
+  validates :title, presence: true
+  validates :description, presence: true
+  validates :calorie, numericality: { only_integer: true }, allow_nil: true
+  
   belongs_to :user
   has_many :bookmarks, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -7,17 +12,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients
   accepts_nested_attributes_for :ingredients, reject_if: :all_blank, allow_destroy: true
 
-  # ActiveStorage用
   has_one_attached :image
-
-  # def get_image
-  #   if image.attached?
-  #     image
-  #   else
-  #   # Blobオブジェクトにしかvariantメソッドは使えないため、ここで変換している
-  #     ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app/assets/images/no_image.jpg')), filename: 'no_image.jpg')
-  #   end
-  # end
   
   def get_image
     if image.attached?
