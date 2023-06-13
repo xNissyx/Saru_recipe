@@ -10,8 +10,13 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
+        <%= form_with(url: search_recipes_path, method: :get, local: true, html: {class: "form-inline my-2 my-lg-0"}) do |form| %>
+          <%= form.text_field :word, placeholder: "レシピを検索する", class: "form-control mr-sm-2" %>
+          <%= form.submit "検索", class: "btn btn-outline-success my-2 my-sm-0" %>
+        <% end %>
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to "レシピ作成", new_recipe_path, class: 'nav-link' %>
@@ -43,12 +48,6 @@
         <% end %>
       </ul>
     </div>
-  </nav>
 
-  <section class="search-bar text-right">
-    <%= form_with(url: search_recipes_path, method: :get, local: true) do |form| %>
-      <%= form.text_field :word, placeholder: "Search for recipes...", class: "search-input" %>
-      <%= form.submit "Search", class: "search-button" %>
-    <% end %>
-  </section>
+  </nav>
 </header>

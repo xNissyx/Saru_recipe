@@ -1,6 +1,6 @@
 <% if @recipes.empty? %>
-  <p>「<%= params[:word] %>」を含むレシピは見つかりませんでした</p>
+  <p><strong>"<%= params[:word] %>"を含むレシピは見つかりませんでした</strong></p>
 <% else %>
-  <p>その「<%= params[:word] %>」を含むレシピが<%= @recipes.count %>件見つかりました。</p>
+  <p><strong>"<%= params[:word] %>"を含むレシピが<%= @recipes.count %>件見つかりました。</strong></p>
 <% end %>
 <%= render "index", recipes: @recipes %>
