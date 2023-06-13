@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+.nav-custom-color, .footer-custom-color {
+  background-color: #ffff99;
+}
+
 body {
   font-family: 'Nunito', sans-serif;
   background-color: #f8f9fa;
@@ -43,6 +48,10 @@ body {
 
 .fa-bookmark {
   font-size: 150%;
+}
+
+.fa-person-circle-question {
+  font-size: 120%;
 }
 
 .bookmark-container {
