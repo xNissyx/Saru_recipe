@@ -1,4 +1,6 @@
 $('#comment').append("<%= escape_javascript(render('comment', comment: @comment)) %>");
+$('#comment_content').val('');
+$("input[name='comment[score]']").val(0);
 
 let commentElem<%= @comment.id %> = document.querySelector('#comment_raty_<%= @comment.id %>');
 
