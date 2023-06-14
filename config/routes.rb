@@ -19,13 +19,13 @@ Rails.application.routes.draw do
     devise_scope :user do
       # 新規登録失敗後のリダイレクトのエラーを防ぐルーティング
       get '/users', to: 'registrations#new'
+      post '/users/guest_login', to: 'users#guest_login'
     end
 
     devise_for :users, controllers: {
       registrations: 'public/registrations',
       sessions: 'public/sessions'
     }
-    post '/users/guest_login', to: 'users#guest_login'
 
     resources :recipes do
       resources :comments, only: [:create, :destroy]
