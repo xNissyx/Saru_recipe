@@ -2,10 +2,12 @@
   <div class="container d-flex justify-content-between">
     <span class="text-muted">Copyright © 猿レシピ 2023</span>
     <ul class="nav flex-column">
-      <%= link_to 'レシピ一覧', recipes_path, class: 'nav-link text-dark' %>
-      <%= link_to '新規登録', new_user_registration_path, class: 'nav-link text-dark' %>
-      <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-dark' %>
-      <%= link_to '管理者の方はこちら', new_admin_session_path, class: 'nav-link text-dark' %>
+      <% unless admin_signed_in? %>
+        <%= link_to 'レシピ一覧', recipes_path, class: 'nav-link text-dark' %>
+        <%= link_to '新規登録', new_user_registration_path, class: 'nav-link text-dark' %>
+        <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-dark' %>
+        <%= link_to '管理者の方はこちら', new_admin_session_path, class: 'nav-link text-dark' %>
+      <% end %>
     </ul>
   </div>
 </footer>
