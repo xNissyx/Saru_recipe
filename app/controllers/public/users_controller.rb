@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   def show
     @user = current_user
-    @recipes = @user.bookmarking_recipes
+    @recipes = @user.bookmarking_recipes.page(params[:page]).per(9)
   end
   
   def edit

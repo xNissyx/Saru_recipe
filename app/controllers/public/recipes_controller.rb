@@ -5,7 +5,7 @@ class Public::RecipesController < ApplicationController
 
   def index
     # N+1問題の解消
-    @recipes = Recipe.includes(:user, image_attachment: :blob).all
+    @recipes = Recipe.includes(:user, image_attachment: :blob).order(created_at: :desc).page(params[:page]).per(12)
   end
 
   def show
@@ -41,18 +41,18 @@ class Public::RecipesController < ApplicationController
     @recipe.destroy
     redirect_to recipes_url, notice: 'レシピを削除しました'
   end
-  
+
   def search
     @recipes = Recipe.where('title LIKE ?', "%#{params[:word]}%")
   end
-  
+
   def tag_search
     @tag = Tag.find(params[:tag_id])
     @recipes = @tag.recipes
   end
 
   private
-  
+
   def ensure_recipe
     @recipe = Recipe.find(params[:id])
     if @recipe.nil? || (@recipe.user != current_user)
@@ -64,5 +64,5 @@ class Public::RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:title, :description, :calorie, :user_id, :image, tag_ids: [], ingredients_attributes: [:id, :name, :quantity, :_destroy])
   end
-  
+
 end

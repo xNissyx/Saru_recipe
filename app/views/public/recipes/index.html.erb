@@ -1,3 +1,8 @@
 <h1>レシピ一覧ページ</h1>
 
 <%= render "index", recipes: @recipes %>
+
+<div class="d-flex justify-content-center">
+  <%= paginate @recipes %>
+</div>
+
