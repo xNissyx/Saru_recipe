@@ -18,8 +18,12 @@
         </div>
         <div class="card-body">
           <%= render "public/recipes/index", recipes: @recipes %>
+          <div class="d-flex justify-content-end">
+            <%= paginate @recipes %>
+          </div>
         </div>
       </div>
+
     <% else %>
       <div class="alert alert-info">ブックマークしたレシピはありません。</div>
     <% end %>
