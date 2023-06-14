@@ -1,6 +1,6 @@
 class Admin::TagsController < ApplicationController
   def index
-    @tags = Tag.all
+    @tags = Tag.page(params[:page]).per(12)
     @tag = Tag.new
   end
 
@@ -18,10 +18,6 @@ class Admin::TagsController < ApplicationController
 
   def destroy
     @tag = Tag.find(params[:id])
-    # タグを削除する前に、それが関連付けられているレシピからそのタグの参照を削除する
-    # @tag.recipes.each do |recipe|
-    #   recipe.tags.delete(@tag)
-    # end
     @tag.destroy
     redirect_to admin_tags_path
   end
