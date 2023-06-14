@@ -41,7 +41,7 @@
       </div>
     </div>
   </div>
-
+  
   <div class="card-footer">
     <% if current_user && (@recipe.user_id == current_user.id) %>
       <%= link_to '編集する', edit_recipe_path(@recipe), class: "btn btn-primary" %> |
@@ -49,7 +49,6 @@
     <%= link_to '一覧に戻る', recipes_path, class: "btn btn-secondary" %><br>
   </div>
 </div>
-
 <div id="comment">
   <% @recipe.comments.each do |comment| %>
     <%= render "public/comments/comment", comment: comment %>

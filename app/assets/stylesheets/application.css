@@ -13,9 +13,20 @@
  *= require_tree .
  *= require_self
  */
+
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
   background-color: #f8f9fa;
+}
+
+#logo {
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: inline; 
+  font-weight: bold;
+}
+
+.nav-custom-color, .footer-custom-color {
+  background-color: #ffff99;
 }
 
 .hero {
@@ -43,6 +54,10 @@ body {
 
 .fa-bookmark {
   font-size: 150%;
+}
+
+.fa-person-circle-question {
+  font-size: 120%;
 }
 
 .bookmark-container {
