@@ -14,13 +14,19 @@
  *= require_self
  */
 
-.nav-custom-color, .footer-custom-color {
-  background-color: #ffff99;
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #f8f9fa;
 }
 
-body {
-  font-family: 'Nunito', sans-serif;
-  background-color: #f8f9fa;
+#logo {
+  font-family: 'Montserrat Subrayada', sans-serif;
+  display: inline; 
+  font-weight: bold;
+}
+
+.nav-custom-color, .footer-custom-color {
+  background-color: #ffff99;
 }
 
 .hero {
