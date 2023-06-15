@@ -5,7 +5,14 @@ class Public::CommentsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @comment = current_user.comments.new(comment_params)
     @comment.recipe_id = @recipe.id
-    @comment.save
+    if @comment.save
+      respond_to do |format|
+        format.js
+      end
+    else
+      flash[:notice] = 'コメント内容を入力してください'
+      redirect_to recipe_path(@recipe)
+    end
   end
 
   def destroy

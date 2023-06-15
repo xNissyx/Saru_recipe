@@ -57,7 +57,9 @@
 </div>
 <div id="comment">
   <% @recipe.comments.each do |comment| %>
-    <%= render "public/comments/comment", comment: comment %>
+    <% if comment.persisted? %>
+      <%= render "public/comments/comment", comment: comment %>
+    <% end %>
   <% end %>
 </div>
 
