@@ -41,7 +41,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="card-footer">
     <% if current_user && (@recipe.user_id == current_user.id) %>
       <%= link_to '編集する', edit_recipe_path(@recipe), class: "btn btn-primary" %> |
@@ -55,7 +55,13 @@
   <% end %>
 </div>
 
-<%= render "public/comments/form", recipe: @recipe %>
+<% if current_user %>
+  <%= render "public/comments/form", recipe: @recipe %>
+<% else %>
+  <div class="alert alert-warning text-center">
+    <p>コメントするにはログインが必要です</p>
+  </div>
+<% end %>
 
 <script>
 $(document).on('turbolinks:load', function () {
