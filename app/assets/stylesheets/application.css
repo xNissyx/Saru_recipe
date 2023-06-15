@@ -35,6 +35,8 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
+  background-image: img-url("hero.jpg");
+  background-size: cover;
 }
 
 .hero-content {
