@@ -32,13 +32,17 @@
               <% end %>
             </ul>
           </li>
-          <li class="list-group-item">タグ:
-            <% @recipe.tags.each do |tag| %>
-              <%= link_to tag_recipes_path(tag_id: tag.id), class: "btn btn-sm bg-secondary text-white" do %>
-                <%= tag.name %>
+          <% if @recipe.tags.any? %>
+            <li class="list-group-item">タグ:
+              <% @recipe.tags.each do |tag| %>
+                <%= link_to tag_recipes_path(tag_id: tag.id), class: "btn btn-sm bg-secondary text-white" do %>
+                  <%= tag.name %>
+                <% end %>
               <% end %>
-            <% end %>
-          </li>
+            </li>
+          <% else %>
+            <li class="list-group-item">タグがありません</li>
+          <% end %>
         </ul>
       </div>
     </div>
