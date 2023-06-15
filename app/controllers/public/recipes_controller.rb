@@ -48,7 +48,7 @@ class Public::RecipesController < ApplicationController
 
   def tag_search
     @tag = Tag.find(params[:tag_id])
-    @recipes = @tag.recipes
+    @recipes = @tag.recipes.includes(:user, image_attachment: :blob).order(created_at: :desc).page(params[:page]).per(12)
   end
 
   private
