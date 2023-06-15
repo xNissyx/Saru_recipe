@@ -18,7 +18,7 @@
       <div class="card-body">
         <h5 class="card-title text-success"><%= @recipe.title %></h5>
         <h5 class="card-title">by&nbsp;<%= @recipe.user.name %></h5>
-        <p class="card-text"><%= @recipe.description %></p>
+        <p class="card-text"><%= simple_format(@recipe.description) %></p>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">カロリー: <%= @recipe.calorie %>kcal</li>
           <li class="list-group-item">材料:

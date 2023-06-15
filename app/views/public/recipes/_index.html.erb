@@ -13,7 +13,7 @@
           <h5 class="card-title text-center">
             <%= link_to recipe.title, recipe, class: 'text-decoration-none' %>
           </h5>
-          <p class="card-text text-center"><%= recipe.description.truncate(100) %></p>
+          <p class="card-text text-center"><%= simple_format(recipe.description.truncate(50)) %></p>
         </div>
         <div class="card-footer text-center">
           <small class="text-muted">カロリー: <%= recipe.calorie %></small><br>
