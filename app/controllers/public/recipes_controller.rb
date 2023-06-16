@@ -2,9 +2,7 @@ class Public::RecipesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
   before_action :ensure_recipe, only: [:edit, :update, :destroy]
 
-
   def index
-    # N+1問題の解消
     @recipes = Recipe.includes(:user, image_attachment: :blob).order(created_at: :desc).page(params[:page]).per(12)
   end
 
