@@ -13,17 +13,17 @@
       </div>
 
       <div class="mb-3">
-        <%= f.label :description, "レシピの説明", class: 'form-label' %>
-        <%= f.text_area :description, class: 'form-control', placeholder: "レシピの簡単な説明" %>
+        <%= f.label :description, "レシピの作り方", class: 'form-label' %>
+        <%= f.text_area :description, class: 'form-control', placeholder: "レシピの簡単な作り方" %>
       </div>
 
       <div class="mb-3">
         <%= f.label :calorie, "カロリー", class: 'form-label' %>
-        <%= f.number_field :calorie, class: 'form-control' %>
+        <%= f.number_field :calorie, class: 'form-control', placeholder: "おおよそでいいが、わからない場合は空欄でもOK" %>
       </div>
       
       <% unless controller.action_name == 'edit' %>
-      <h4><u>必要な材料</u></h4>
+      <h4><u>必要な材料(1人分、調味料は書かなくてもOK)</u></h4>
       
       <div class="mb-3" id="ingredients">
         <%= f.fields_for :ingredients do |ingredient| %>
@@ -41,7 +41,7 @@
       </div>
 
       <div class="actions text-center mt-4">
-        <%= f.submit "Submit", class: "btn btn-secondary btn" %>
+        <%= f.submit "投稿", class: "btn btn-secondary btn" %>
       </div>
     <% end %>
   </div>

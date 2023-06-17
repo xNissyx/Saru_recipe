@@ -1,20 +1,20 @@
 <%= form_with(model: [ @recipe, @recipe.comments.build ], local: false) do |form| %>
 
   <div id="post_raty"></div>
-  
+
   <div class="mb-3">
-    <%= form.label :content, class: 'form-label' %>
-    <%= form.text_area :content, class: 'form-control' %>
+    <%= form.label :content, "コメント", class: 'form-label' %>
+    <%= form.text_area :content, class: 'form-control', placeholder: "ここにコメントを入力してください" %>
   </div>
-  <%= form.submit class: 'btn btn-primary' %>
+  <%= form.submit "投稿", class: 'btn btn-primary' %>
 <% end %>
 
 <script>
 $(document).on('turbolinks:load', function () {
   let elem = document.querySelector('#post_raty');
-  
+
   elem.innerHTML = "";
-  
+
   let opt = {
     size     : 38,
     starOff:  '<%= asset_path('star-off.png') %>',

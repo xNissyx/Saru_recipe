@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2023_06_07_085539) do
     t.integer "user_id", null: false
     t.integer "recipe_id", null: false
     t.text "content", null: false
-    t.float "score", null: false
+    t.float "score", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["recipe_id"], name: "index_comments_on_recipe_id"

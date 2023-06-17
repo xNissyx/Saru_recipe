@@ -18,9 +18,11 @@
       <div class="card-body">
         <h5 class="card-title text-success"><%= @recipe.title %></h5>
         <h5 class="card-title">by&nbsp;<%= @recipe.user.name %></h5>
-        <p class="card-text"><%= @recipe.description %></p>
+        <p class="card-text"><%= simple_format(@recipe.description) %></p>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">カロリー: <%= @recipe.calorie %>kcal</li>
+          <% unless @recipe.calorie.nil? %>
+            <li class="list-group-item">カロリー: <%= @recipe.calorie %>kcal</li>
+          <% end %>
           <li class="list-group-item">材料:
             <ul class="list-group list-group-flush">
               <% @recipe.ingredients.each do |ingredient| %>
@@ -30,18 +32,22 @@
               <% end %>
             </ul>
           </li>
-          <li class="list-group-item">タグ:
-            <% @recipe.tags.each do |tag| %>
-              <%= link_to tag_recipes_path(tag_id: tag.id), class: "btn btn-sm bg-secondary text-white" do %>
-                <%= tag.name %>
+          <% if @recipe.tags.any? %>
+            <li class="list-group-item">タグ:
+              <% @recipe.tags.each do |tag| %>
+                <%= link_to tag_recipes_path(tag_id: tag.id), class: "btn btn-sm bg-secondary text-white" do %>
+                  <%= tag.name %>
+                <% end %>
               <% end %>
-            <% end %>
-          </li>
+            </li>
+          <% else %>
+            <li class="list-group-item">タグがありません</li>
+          <% end %>
         </ul>
       </div>
     </div>
   </div>
-  
+
   <div class="card-footer">
     <% if current_user && (@recipe.user_id == current_user.id) %>
       <%= link_to '編集する', edit_recipe_path(@recipe), class: "btn btn-primary" %> |
@@ -51,11 +57,19 @@
 </div>
 <div id="comment">
   <% @recipe.comments.each do |comment| %>
-    <%= render "public/comments/comment", comment: comment %>
+    <% if comment.persisted? %>
+      <%= render "public/comments/comment", comment: comment %>
+    <% end %>
   <% end %>
 </div>
 
-<%= render "public/comments/form", recipe: @recipe %>
+<% if current_user %>
+  <%= render "public/comments/form", recipe: @recipe %>
+<% else %>
+  <div class="alert alert-warning text-center">
+    <p>コメントするにはログインが必要です</p>
+  </div>
+<% end %>
 
 <script>
 $(document).on('turbolinks:load', function () {
