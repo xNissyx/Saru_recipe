@@ -4,7 +4,7 @@
       <div class="card h-100">
         <%= link_to recipe do %>
           <% if recipe.get_image.present? %>
-            <%= image_tag recipe.get_image.variant( resize: "300x200^", gravity: "center", crop: "300x200+0+0" ).processed, class: 'card-img-top' %>
+            <%= image_tag recipe.get_image.variant( resize: "300x300^", gravity: "center", crop: "300x300+0+0" ).processed, class: 'card-img-top' %>
           <% else %>
             <%= image_tag "no_image.jpg", class: 'card-img-top' %>
           <% end %>
