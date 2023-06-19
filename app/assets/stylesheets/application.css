@@ -16,17 +16,17 @@
 
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  background-color: #f8f9fa;
+  background-color: #fffdfa;
 }
 
 #logo {
   font-family: 'Montserrat Subrayada', sans-serif;
-  display: inline; 
+  display: inline;
   font-weight: bold;
 }
 
 .nav-custom-color, .footer-custom-color {
-  background-color: #ffff99;
+  background-image: linear-gradient(188deg, rgba(255, 255, 181, 1) 29%, rgba(241, 251, 92, 1) 70%);
 }
 
 .hero {
