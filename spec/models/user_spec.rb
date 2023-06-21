@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'パスワードが一致しない場合、無効である' do
-      user.password_confirmation = user.password.upcase
+      user.password_confirmation = 'different_password'
       expect(user).not_to be_valid
     end
   end
