@@ -16,11 +16,6 @@
         <%= f.label :description, "レシピの作り方", class: 'form-label' %>
         <%= f.text_area :description, class: 'form-control', placeholder: "レシピの簡単な作り方" %>
       </div>
-
-      <div class="mb-3">
-        <%= f.label :calorie, "カロリー", class: 'form-label' %>
-        <%= f.number_field :calorie, class: 'form-control', placeholder: "おおよそでいいが、わからない場合は空欄でもOK" %>
-      </div>
       
       <% unless controller.action_name == 'edit' %>
       <h4><u>必要な材料(1人分、調味料は書かなくてもOK)</u></h4>
