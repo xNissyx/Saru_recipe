@@ -20,9 +20,6 @@
         <h5 class="card-title">by&nbsp;<%= @recipe.user.name %></h5>
         <p class="card-text"><%= simple_format(@recipe.description) %></p>
         <ul class="list-group list-group-flush">
-          <% unless @recipe.calorie.nil? %>
-            <li class="list-group-item">カロリー: <%= @recipe.calorie %>kcal</li>
-          <% end %>
           <li class="list-group-item">材料:
             <ul class="list-group list-group-flush">
               <% @recipe.ingredients.each do |ingredient| %>
