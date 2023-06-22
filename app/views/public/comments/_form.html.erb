@@ -3,7 +3,7 @@
   <div id="post_raty"></div>
 
   <div class="mb-3">
-    <%= form.label :content, "コメント", class: 'form-label' %>
+    <%= form.label :content, "コメント", class: 'form-label' %><span class="text-danger">*</span>
     <%= form.text_area :content, class: 'form-control', placeholder: "ここにコメントを入力してください" %>
   </div>
   <%= form.submit "投稿", class: 'btn btn-primary' %>
