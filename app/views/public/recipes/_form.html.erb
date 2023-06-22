@@ -8,13 +8,13 @@
       </div>
 
       <div class="mb-3">
-        <%= f.label :title, "レシピ名", class: 'form-label' %>
+        <%= f.label :title, "レシピ名", class: 'form-label' %><span class="text-danger">*</span>
         <%= f.text_field :title, class: "form-control #{'is-invalid' if recipe.errors[:title].any?}", placeholder: "レシピ名" %>
         <%= error_message_for(:title, recipe) %>
       </div>
 
       <div class="mb-3">
-        <%= f.label :description, "レシピの作り方", class: 'form-label' %>
+        <%= f.label :description, "レシピの作り方", class: 'form-label' %><span class="text-danger">*</span>
         <%= f.text_area :description, class: "form-control #{'is-invalid' if recipe.errors[:description].any?}", placeholder: "レシピの簡単な作り方" %>
         <%= error_message_for(:description, recipe) %>
       </div>
