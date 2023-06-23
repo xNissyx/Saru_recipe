@@ -15,7 +15,7 @@ class User < ApplicationRecord
     if image.attached?
       image
     else
-      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join('app', 'assets', 'images', 'no_image.jpg')), filename: 'no_image.jpg')
+      ActiveStorage::Blob.create_and_upload!(io: File.open(Rails.root.join("app", "assets", "images", "no_image.jpg")), filename: "no_image.jpg")
     end
   end
 
@@ -26,7 +26,7 @@ class User < ApplicationRecord
   end
   # ゲストログイン用のメソッド
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
+    find_or_create_by!(email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
     end
