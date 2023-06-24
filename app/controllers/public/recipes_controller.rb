@@ -18,7 +18,7 @@ class Public::RecipesController < ApplicationController
   def create
     @recipe = current_user.recipes.new(recipe_params)
     if @recipe.save
-      redirect_to recipe_path(@recipe), notice: 'レシピを作成しました'
+      redirect_to recipe_path(@recipe), notice: "レシピを作成しました"
     else
       render :new
     end
@@ -29,7 +29,7 @@ class Public::RecipesController < ApplicationController
 
   def update
     if @recipe.update(recipe_params)
-      redirect_to @recipe, notice: 'レシピを更新しました'
+      redirect_to @recipe, notice: "レシピを更新しました"
     else
       render :edit
     end
@@ -37,11 +37,11 @@ class Public::RecipesController < ApplicationController
 
   def destroy
     @recipe.destroy
-    redirect_to recipes_url, notice: 'レシピを削除しました'
+    redirect_to recipes_url, notice: "レシピを削除しました"
   end
 
   def search
-    @recipes = Recipe.where('title LIKE ?', "%#{params[:word]}%")
+    @recipes = Recipe.where("title LIKE ?", "%#{params[:word]}%")
   end
 
   def tag_search
@@ -50,17 +50,15 @@ class Public::RecipesController < ApplicationController
   end
 
   private
-
-  def ensure_recipe
-    @recipe = Recipe.find(params[:id])
-    if @recipe.nil? || (@recipe.user != current_user)
-      redirect_to recipes_path, notice: "このレシピを編集できるのは本人のみです"
-      return
+    def ensure_recipe
+      @recipe = Recipe.find(params[:id])
+      if @recipe.nil? || (@recipe.user != current_user)
+        redirect_to recipes_path, notice: "このレシピを編集できるのは本人のみです"
+        nil
+      end
     end
-  end
 
-  def recipe_params
-    params.require(:recipe).permit(:title, :description, :calorie, :user_id, :image, tag_ids: [], ingredients_attributes: [:id, :name, :quantity, :_destroy])
-  end
-
+    def recipe_params
+      params.require(:recipe).permit(:title, :description, :user_id, :image, tag_ids: [], ingredients_attributes: [:id, :name, :quantity, :_destroy])
+    end
 end

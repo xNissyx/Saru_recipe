@@ -9,7 +9,7 @@ class Public::BookmarksController < ApplicationController
     #   redirect_to recipe_path(recipe), notice: "ブックマーク失敗"
     # end
   end
-  
+
   def destroy
     @recipe = Recipe.find(params[:recipe_id])
     bookmark = current_user.bookmarks.find_by(recipe_id: @recipe.id)

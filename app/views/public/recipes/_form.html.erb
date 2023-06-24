@@ -8,23 +8,20 @@
       </div>
 
       <div class="mb-3">
-        <%= f.label :title, "レシピ名", class: 'form-label' %>
-        <%= f.text_field :title, class: 'form-control', placeholder: "レシピ名" %>
+        <%= f.label :title, "レシピ名", class: 'form-label' %><span class="text-danger">*</span>
+        <%= f.text_field :title, class: "form-control #{'is-invalid' if recipe.errors[:title].any?}", placeholder: "レシピ名" %>
+        <%= error_message_for(:title, recipe) %>
       </div>
 
       <div class="mb-3">
-        <%= f.label :description, "レシピの作り方", class: 'form-label' %>
-        <%= f.text_area :description, class: 'form-control', placeholder: "レシピの簡単な作り方" %>
+        <%= f.label :description, "レシピの作り方", class: 'form-label' %><span class="text-danger">*</span>
+        <%= f.text_area :description, class: "form-control #{'is-invalid' if recipe.errors[:description].any?}", placeholder: "レシピの簡単な作り方" %>
+        <%= error_message_for(:description, recipe) %>
       </div>
 
-      <div class="mb-3">
-        <%= f.label :calorie, "カロリー", class: 'form-label' %>
-        <%= f.number_field :calorie, class: 'form-control', placeholder: "おおよそでいいが、わからない場合は空欄でもOK" %>
-      </div>
-      
       <% unless controller.action_name == 'edit' %>
       <h4><u>必要な材料(1人分、調味料は書かなくてもOK)</u></h4>
-      
+
       <div class="mb-3" id="ingredients">
         <%= f.fields_for :ingredients do |ingredient| %>
               <%= render 'ingredient_fields', f: ingredient %>

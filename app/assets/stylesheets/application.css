@@ -16,17 +16,17 @@
 
 body {
   font-family: 'Noto Sans JP', sans-serif;
-  background-color: #f8f9fa;
+  background-color: #fffdfa;
 }
 
 #logo {
   font-family: 'Montserrat Subrayada', sans-serif;
-  display: inline; 
+  display: inline;
   font-weight: bold;
 }
 
 .nav-custom-color, .footer-custom-color {
-  background-color: #ffff99;
+  background-image: linear-gradient(188deg, rgba(255, 255, 181, 1) 29%, rgba(241, 251, 92, 1) 70%);
 }
 
 .hero {
@@ -35,7 +35,6 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
-  /*background-image: url("../images/hero.jpg");*/
   background-size: cover;
 }
 
@@ -49,9 +48,9 @@ body {
 }
 
 .recommended-recipe {
-  width: 100%;  /* カードの幅に合わせて画像を拡大・縮小 */
-  height: 150px;  /* 高さを指定 */
-  object-fit: cover;  /* 画像のアスペクト比を保持しつつ、指定されたサイズに収まるように表示 */
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
 
 .fa-bookmark {
