@@ -9,12 +9,14 @@
             <%= image_tag "no_image.jpg", class: 'card-img-top' %>
           <% end %>
         <% end %>
+        
         <div class="card-body">
           <h5 class="card-title text-center">
             <%= link_to recipe.title, recipe, class: 'text-decoration-none' %>
           </h5>
           <p class="card-text text-center"><%= simple_format(recipe.description.truncate(50)) %></p>
         </div>
+        
         <div class="card-footer text-center">
           <small class="text-muted">作成者: <%= recipe.user.name %></small>
         </div>
