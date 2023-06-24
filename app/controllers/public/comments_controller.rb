@@ -10,7 +10,7 @@ class Public::CommentsController < ApplicationController
         format.js
       end
     else
-      flash[:notice] = 'コメント内容を入力してください'
+      flash[:notice] = "コメント内容を入力してください"
       redirect_to recipe_path(@recipe)
     end
   end
@@ -23,8 +23,7 @@ class Public::CommentsController < ApplicationController
   end
 
   private
-
-  def comment_params
-    params.require(:comment).permit(:content, :score)
-  end
+    def comment_params
+      params.require(:comment).permit(:content, :score)
+    end
 end
