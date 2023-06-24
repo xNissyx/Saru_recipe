@@ -1,7 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
-require 'rack-mini-profiler'
+require "rack-mini-profiler"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -18,10 +18,10 @@ module Portfolio
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    
+
     # タイムゾーン変更
-    config.time_zone = 'Tokyo'
-    
+    config.time_zone = "Tokyo"
+
     # devise日本語化
     config.i18n.default_locale = :ja
   end

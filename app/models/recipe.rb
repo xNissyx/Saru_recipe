@@ -18,5 +18,4 @@ class Recipe < ApplicationRecord
       image
     end
   end
-
 end

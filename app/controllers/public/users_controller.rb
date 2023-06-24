@@ -20,7 +20,7 @@ class Public::UsersController < ApplicationController
   def guest_login
     user = User.guest
     sign_in user
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to root_path, notice: "ゲストユーザーとしてログインしました。"
   end
 
   def confirm
@@ -33,8 +33,7 @@ class Public::UsersController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:name, :email, :image)
-  end
+    def user_params
+      params.require(:user).permit(:name, :email, :image)
+    end
 end
