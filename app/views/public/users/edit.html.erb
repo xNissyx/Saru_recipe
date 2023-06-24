@@ -4,7 +4,6 @@
 
     <div class="card-body">
       <%= form_with(model: @user, url: user_path, method: :patch, local: true, html: { class: "profile-form" }) do |f| %>
-
         <div class="form-group">
           <%= f.label :image, "プロフィール画像", class: "form-label" %>
           <%= f.file_field :image, accept: "image/*", class: "form-control-file", id: "profile-image-upload" %>

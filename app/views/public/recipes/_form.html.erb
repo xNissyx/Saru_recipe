@@ -1,7 +1,6 @@
 <div class="card shadow-sm">
   <div class="card-body">
     <%= form_with(model: recipe, local: true) do |f| %>
-
       <div class="mb-3">
         <%= f.label :image, "料理の写真", class: 'form-label' %>
         <%= f.file_field :image, accept: "image/*" %>
