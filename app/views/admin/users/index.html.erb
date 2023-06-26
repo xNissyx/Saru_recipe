@@ -20,7 +20,7 @@
           <td>
             <%= form_with model: [:admin, user],url: admin_user_path(user),  method: :patch do |f| %>
               <%= f.hidden_field :is_deleted, value: !user.is_deleted %>
-              <%= f.submit "更新する" %>
+              <%= f.submit "更新する", id: "update_user_#{user.id}" %>
             <% end %>
           </td>
         </tr>
