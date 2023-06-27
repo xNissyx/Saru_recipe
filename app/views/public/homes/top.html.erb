@@ -36,7 +36,8 @@
                     <h5 class="card-title text-center"><%= recipe.title %></h5>
                   </div>
                   <div class="card-footer">
-                    <small class="text-muted text-center">作成者: <%= recipe.user.name %></small>
+                    <%= image_tag recipe.user.get_image.variant(resize: "30x30^", gravity: "center", crop: "30x30+0+0").processed, class: 'rounded-circle' %>
+                    <small class="text-muted text-center"><%= recipe.user.name %></small>
                   </div>
                 </div>
               </div>

@@ -13,11 +13,14 @@
         </div>
       </div>
     </div>
-    
+
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title text-success"><%= @recipe.title %></h5>
-        <h5 class="card-title">by&nbsp;<%= @recipe.user.name %></h5>
+        <h5 class="card-title">
+          <%= image_tag @recipe.user.get_image.variant(resize: "30x30^", gravity: "center", crop: "30x30+0+0").processed, class: 'rounded-circle' %>
+          <%= @recipe.user.name %>
+        </h5>
         <p class="card-text"><%= simple_format(@recipe.description) %></p>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">材料:
