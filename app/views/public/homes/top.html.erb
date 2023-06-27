@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-md-3">
+    <div class="col-md-3 pb-3">
       <div class="list-group">
           <li class="list-group-item list-group-item-dark">タグ一覧（人気順）</li>
         <% @tags.each do |tag| %>
@@ -13,7 +13,7 @@
     <div class="col-md-9">
       <section class="hero text-center p-5 mb-5 rounded" style="background-image: url(<%= asset_path "banana.jpg" %>);">
         <div class="hero-content text-white">
-          <h1 class="display-4">猿レシピへようこそ!</h1>
+          <h1 id="top-title" class="pb-3">猿レシピへようこそ!</h1>
           <p class="lead">猿でも簡単に作れるレシピがきっと見つかる!</p>
         </div>
       </section>
@@ -23,17 +23,21 @@
           <h2 class="text-center mb-4">新着レシピ</h2>
           <div class="row">
             <% @recipes.each do |recipe| %>
-              <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+              <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
                   <%= link_to recipe_path(recipe) do %>
                     <% if recipe.get_image.present? %>
                       <%= image_tag recipe.get_image.variant( resize: "300x200^", gravity: "center", crop: "300x200+0+0" ).processed, class: 'card-img-top', style: "height: 150px;" %>
                     <% else %>
-                      <%= image_tag "no_image.jpg", class: 'card-img-top', style: "height: 150px;" %>
+                      <%= image_tag "no_image.jpg", class: 'card-img-top' %>
                     <% end %>
                   <% end %>
                   <div class="card-body">
-                    <h5 class="card-title"><%= recipe.title %></h5>
+                    <h5 class="card-title text-center"><%= recipe.title %></h5>
+                  </div>
+                  <div class="card-footer">
+                    <%= image_tag recipe.user.get_image.variant(resize: "30x30^", gravity: "center", crop: "30x30+0+0").processed, class: 'rounded-circle' %>
+                    <small class="text-muted text-center"><%= recipe.user.name %></small>
                   </div>
                 </div>
               </div>
