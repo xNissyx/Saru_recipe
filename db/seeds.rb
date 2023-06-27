@@ -32,12 +32,12 @@ users = User.create!(
 
 recipes = Recipe.create!(
   [
-    {title: 'Cavello', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-recipe1.jpg"), filename:"sample-recipe1.jpg"), description: 'いかを串にさして焼くだけ', user_id: users[0].id},
-    {title: 'Cavello', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-recipe2.jpg"), filename:"sample-recipe2.jpg"), description: 'レッドブルを注ぐだけ、これがないと一日が始まらない', user_id: users[1].id},
-    {title: 'Cavello', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-recipe3.jpg"), filename:"sample-recipe3.jpg"), description: 'ソーセージを焼くだけ、電子レンジでもok（6本の場合で500W60秒、600W40秒）', user_id: users[2].id},
-    {title: 'Cavello', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-recipe4.jpg"), filename:"sample-recipe4.jpg"), description: 'ご飯に卵をかける最高の飯', user_id: users[3].id},
-    {title: 'Cavello', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-recipe5.jpg"), filename:"sample-recipe5.jpg"), description: '冷凍うどんを電子レンジで３分前後チンする。あとはお好みで', user_id: users[4].id},
-    {title: 'Cavello', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-recipe6.jpg"), filename:"sample-recipe6.jpg"), description: '目玉焼き、蓋をして焼くとこんな感じでピンク色になる。', user_id: users[5].id}
+    {title: 'いか焼き', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-recipe1.jpg"), filename:"sample-recipe1.jpg"), description: 'いかを串にさして焼くだけ', user_id: users[0].id},
+    {title: '例のアレ', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-recipe2.jpg"), filename:"sample-recipe2.jpg"), description: 'レッドブルを注ぐだけ、これがないと一日が始まらない', user_id: users[1].id},
+    {title: 'ソーセージ', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-recipe3.jpg"), filename:"sample-recipe3.jpg"), description: 'ソーセージを焼くだけ、電子レンジでもok（6本の場合で500W60秒、600W40秒）', user_id: users[2].id},
+    {title: '卵かけご飯', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-recipe4.jpg"), filename:"sample-recipe4.jpg"), description: 'ご飯に卵をかける最高の飯', user_id: users[3].id},
+    {title: 'うどん', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-recipe5.jpg"), filename:"sample-recipe5.jpg"), description: '冷凍うどんを電子レンジで３分前後チンする。あとはお好みで', user_id: users[4].id},
+    {title: '目玉焼き', image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-recipe6.jpg"), filename:"sample-recipe6.jpg"), description: '目玉焼き、蓋をして焼くとこんな感じでピンク色になる。', user_id: users[5].id}
   ]
 )
 
