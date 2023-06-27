@@ -33,7 +33,10 @@
                     <% end %>
                   <% end %>
                   <div class="card-body">
-                    <h5 class="card-title text-center"><%= recipe.title %></h5>
+                    <h5 class="card-title text-center">
+                      <%= link_to recipe.title, recipe, class: 'text-decoration-none' %>
+                    </h5>
+                    <p class="card-text text-center"><%= simple_format(recipe.description.truncate(50)) %></p>
                   </div>
                   <div class="card-footer">
                     <%= image_tag recipe.user.get_image.variant(resize: "30x30^", gravity: "center", crop: "30x30+0+0").processed, class: 'rounded-circle' %>
