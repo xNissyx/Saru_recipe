@@ -20,6 +20,7 @@
         <div class="card-footer">
           <%= image_tag recipe.user.get_image.variant(resize: "30x30^", gravity: "center", crop: "30x30+0+0").processed, class: 'rounded-circle' %>
           <small class="text-muted text-center"><%= recipe.user.name %></small>
+          <small class="text-muted text-right d-block"><%= recipe.created_at.strftime("%Y/%m/%d %H:%M") %></small>
         </div>
       </div>
     </div>
