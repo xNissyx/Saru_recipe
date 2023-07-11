@@ -21,6 +21,12 @@ ja:
               blank: "レシピ名を入力してください"
             description:
               blank: "レシピの作り方を入力してください"
+        ingredient:
+          attributes:
+            name:
+              blank: "材料を入力してください"
+            quantity: 
+              blank: "分量を入力してください"
   date:
     abbr_day_names:
     - 日

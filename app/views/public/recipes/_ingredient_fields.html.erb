@@ -1,7 +1,31 @@
 <div class="nested-fields card-body py-1">
-  <%= f.label :name, "材料名" %>
-  <%= f.text_field :name %>
-  <%= f.label :quantity, "分量" %>
-  <%= f.text_field :quantity %>
-  <%= link_to_remove_association "材料の削除", f, class: "btn btn-secondary btn-sm" %>
+  <div class="row">
+    <div class="col-4">
+      <div class="form-group form-inline">
+        <%= f.label :name, "材料名" %>
+        <% if f.object.errors.full_messages_for('name').any? %>
+          <%= f.text_field :name, class: "form-control is-invalid" %>
+          <div class="invalid-feedback d-block"><%= f.object.errors.full_messages_for('name').join(' ') %></div>
+        <% else %>
+          <%= f.text_field :name,class: "form-control" %>  
+        <% end %>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group form-inline">
+        <%= f.label :quantity, "分量" %>
+        <% if f.object.errors.full_messages_for('quantity').any? %>
+          <%= f.text_field :quantity, class: "form-control is-invalid" %>
+          <div class="invalid-feedback d-block"><%= f.object.errors.full_messages_for('quantity').join(' ') %></div>
+        <% else %>
+          <%= f.text_field :quantity,class: "form-control"  %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="form-group form-inline">
+        <%= link_to_remove_association "材料の削除", f, class: "btn btn-secondary btn-sm" %>
+      </div>
+    </div>
+  </div>
 </div>
