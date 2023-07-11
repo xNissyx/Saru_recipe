@@ -18,9 +18,7 @@
         <%= error_message_for(:description, recipe) %>
       </div>
 
-      <% unless controller.action_name == 'edit' %>
       <h4><u>必要な材料(1人分、調味料は書かなくてもOK)</u></h4>
-
       <div class="mb-3" id="ingredients">
         <%= f.fields_for :ingredients do |ingredient| %>
               <%= render 'ingredient_fields', f: ingredient %>
@@ -29,7 +27,6 @@
           <%= link_to_add_association '材料の追加', f, :ingredients, class: 'btn btn-secondary btn-sm' %>
         </div>
       </div>
-      <% end %>
 
       <div class="mb-3">
         <%= f.label :tag_ids, "該当するタグがあったら選択してください", class: 'form-label' %><br>
