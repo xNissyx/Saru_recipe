@@ -1,15 +1,14 @@
 class Public::UsersController < ApplicationController
+  before_action :set_user, except: [:guest_login]
+  
   def show
-    @user = current_user
     @recipes = @user.bookmarking_recipes.includes(:user, image_attachment: :blob).page(params[:page]).per(9)
   end
 
   def edit
-    @user = current_user
   end
 
   def update
-    @user = current_user
     if @user.update(user_params)
       redirect_to users_path
     else
@@ -27,12 +26,16 @@ class Public::UsersController < ApplicationController
   end
 
   def withdraw
-    current_user.update(is_deleted: true)
+    @user.update(is_deleted: true)
     reset_session
     redirect_to root_path, notice: "退会に成功しました。"
   end
 
   private
+    def set_user
+      @user = current_user
+    end
+    
     def user_params
       params.require(:user).permit(:name, :email, :image)
     end

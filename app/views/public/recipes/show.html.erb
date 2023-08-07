@@ -3,7 +3,7 @@
     <div class="col-md-4">
       <div class="bookmark-container">
         <% if @recipe.get_image.present? %>
-          <%= image_tag @recipe.get_image.variant(resize: "300x300^", gravity: "center", crop: "300x300+0+0" ).processed, class: "card-img" %>
+          <%= image_tag @recipe.get_image, class: "card-img" %>
         <% else %>
           <%= image_tag "no_image.jpg", size: "300x300", class: "card-img shadow" %>
         <% end %>
